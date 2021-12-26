@@ -1,24 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="Container">
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/nabil/Desktop/PHP SYMFONY/Projet 6/P6_Mecili_Nabil/P6_01_SnowTricks_CodeSource/SnowTricks/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/nabil/Desktop/PHP SYMFONY/Projet 6/P6_Mecili_Nabil/P6_01_SnowTricks_CodeSource/SnowTricks/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('images/frontflip-1.jpg') }}" class="carouselimg" alt="First">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/nose-grab.jpg') }}" class="carouselimg" alt="Secound">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/stalefish-1.jpg') }}" class="carouselimg" alt="Third">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
