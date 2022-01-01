@@ -3,28 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" >
+
       
         {% block stylesheets %}
-          <link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">
-          <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
         {% endblock %}
+
 
     </head>
     <body>
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/">Snow Tracks</a>
+          <div class="container-fluid ">
+            <a class="navbar-brand" href="/">Snow Tricks </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          <div>
             <div class="collapse navbar-collapse" id="navbarColor02">
-              <ul class="navbar-nav me-auto">
+              <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Home' ? 'active' : '' }}" href="/">Home
-                      <!-- <span class="visually-hidden">(</span> -->
-                    </a>
+                    <a class="nav-link {{ (activee)=='Home' ? 'active' : '' }}" href="/">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link {{ (activee)=='Tricks' ? 'active' : '' }}" href="#">Tricks</a>
@@ -38,13 +39,15 @@
                   </li>
                   {% else %}
                   <li class="nav-item">
+                    <a class="nav-link {{ (activee)=='Admin' ? 'active' : '' }}" href="/Admin">Administrer</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link {{ (activee)=='Logout' ? 'active' : '' }}" href="/logout">Déconnexion</a>
                   </li>
                   {% endif %}
 
               </ul>
             </div>
-          </div>
           </div>
       </nav>
 
@@ -53,19 +56,8 @@
       </div>
       
       <div class="container-fluid">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-          <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-            </a>
-            <span class="text-muted">&copy; 2021 Company, Inc</span>
-          </div>
-      
-          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-          </ul>
+        <footer class="py-3 my-4 border-top text-center">
+          <span class="text-muted text-center">&copy; 2021 Nabil Mecili, tous droit réservés</span>
         </footer>
       </div>
         

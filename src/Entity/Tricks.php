@@ -56,7 +56,7 @@ class Tricks
     private $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity=categories::class)
+     * @ORM\ManyToOne(targetEntity=Categories::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashbord!{% endblock %}
+
+{% block body %}
+    <div class="mb-3">
+        Bonjour {{ app.user.nickname }}
+    </div>
+    <div class='container'>
+        <p class='text-center'>
+
+            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#profil" aria-expanded="false" aria-controls="profil">
+                Mon Profil
+            </button>
+            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#tricks" aria-expanded="false" aria-controls="tricks">
+                Tricks
+            </button>
+
+            {% if is_granted('ROLE_USER') %}                
+            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#categories" aria-expanded="false" aria-controls="categories">
+                Catégories
+            </button>
+            {% endif %}
+
+        </p>
+        {# Profile Collapse #}
+        <div class="collapse show" id="profil">
+            <div class="card card-body">
+                <section >
+                    <article>
+                        <img src="{{ asset('images/im.png') }}">
+                    </article>
+                    <article>
+                                <h4><span><small>Nom : </small>{{ app.user.lastname }}</h4>
+                                <p>Pseudo : {{ app.user.nickname }}</p>
+                                <p>Mail : {{ app.user.email }}</p>
+                                <a href="#" class="btn btn-success">Modifiers les infos</a>
+                    </article>
+                </section>
+            </div>
+        </div>
+        {# Tricks Collapse #}
+        <div class="collapse" id="tricks">
+            <div class="card card-body">
+                Tricks
+            </div>
+        </div>
+        {# Categories Collapse #}
+        <div class="collapse" id="categories">
+            <div class="card card-body">
+                Catégories
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
