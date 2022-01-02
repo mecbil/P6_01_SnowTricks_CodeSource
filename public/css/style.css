@@ -15,10 +15,10 @@
 #profil img
 {
     max-width: 360px;
-    height: 300px;
+    height: 250px;
     border-radius: 10px 0 0 10px;
     margin-right: 40px;
     object-fit: cover;
-    border: 0.1rem solid;
+    box-shadow: 1px 1px 1px 1px black;
     
 }
