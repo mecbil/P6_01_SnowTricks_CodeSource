@@ -16,7 +16,7 @@
                 Tricks
             </button>
 
-            {% if is_granted('ROLE_USER') %}                
+            {% if is_granted('ROLE_ADMIN') %}                
             <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#categories" aria-expanded="false" aria-controls="categories">
                 Catégories
             </button>
@@ -47,9 +47,26 @@
         </div>
         {# Categories Collapse #}
         <div class="collapse" id="categories">
-            <div class="card card-body">
-                Catégories
+
+            <div class="card card-body ">
+            <h2>Liste des Catégories</h2>
+            <p> </p>
+                <div class='container  row d-flex'>
+                    {% for Categorie in Categories %}
+                        <p class="m-2">- ** <span class="btn-danger">{{ Categorie.label }}</span> ** -</p>
+                    {% endfor %}                    
+                </div>
+            <p> </p>
+            <h2>Ajouter une catégorie</h2>
+                <div class='container  col-8'>
+                    {{ form_start(form) }}
+                        {{ form_row(form.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
+
+                        <button type="submit" class="btn btn-success">Valider</button>
+                    {{ form_end(form) }}
+                </div>
             </div>
+
         </div>
     </div>
 
