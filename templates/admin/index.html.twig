@@ -24,7 +24,7 @@
 
         </p>
         {# Profile Collapse #}
-        <div class="collapse show" id="profil">
+        <div class="collapse {{ (onglet)=='profil' ? 'show' : '' }}" id="profil">
             <div class="card card-body">
                 <section >
                     <article>
@@ -40,13 +40,13 @@
             </div>
         </div>
         {# Tricks Collapse #}
-        <div class="collapse" id="tricks">
+        <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }}" id="tricks">
             <div class="card card-body">
                 Tricks
             </div>
         </div>
         {# Categories Collapse #}
-        <div class="collapse" id="categories">
+        <div class="collapse {{ (onglet)=='categories' ? 'show' : '' }}" id="categories">
 
             <div class="card card-body ">
             <h2>Liste des Catégories</h2>
@@ -59,11 +59,11 @@
             <p> </p>
             <h2>Ajouter une catégorie</h2>
                 <div class='container  col-8'>
-                    {{ form_start(form) }}
-                        {{ form_row(form.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
+                    {{ form_start(formCategorie) }}
+                        {{ form_row(formCategorie.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
 
                         <button type="submit" class="btn btn-success">Valider</button>
-                    {{ form_end(form) }}
+                    {{ form_end(formCategorie) }}
                 </div>
             </div>
 
