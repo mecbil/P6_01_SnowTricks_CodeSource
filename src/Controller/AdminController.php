@@ -6,7 +6,6 @@ use App\Entity\Categories;
 use App\Form\CategoriesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-//use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,9 +13,11 @@ use Doctrine\Persistence\ManagerRegistry;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/Admin", name="admin")
+     * @Route("/Admin/{onglet}", name="admin_admin")
+     * @Route("/Admin/{onglet}", name="admin_tricks")
+     * @Route("/Admin/{onglet}", name="admin_categories")
      */
-    public function index(Request $request, ManagerRegistry $doctrine): Response
+    public function index($onglet = null, Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->getUser()) 
         {
@@ -33,15 +34,17 @@ class AdminController extends AbstractController
                 $em->persist($categorie);
                 $em->flush();
 
-                return $this->redirectToRoute('admin');
+                $onglet = 'categories';
+                return $this->redirectToRoute('admin_categories', ['onglet' => $onglet]);
 
             }
-
+            $onglet = 'profil';
             return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'activee' => 'Admin',
-            'form' => $form->createView(),
+            'formCategorie' => $form->createView(),
             'Categories' => $cat,
+            'onglet' => $onglet,
         ]);
         } else {
             return $this->redirectToRoute('app_home');
