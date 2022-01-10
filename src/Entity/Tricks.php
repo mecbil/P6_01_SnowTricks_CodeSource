@@ -6,6 +6,7 @@ use App\Repository\TricksRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=TricksRepository::class)
@@ -50,7 +51,7 @@ class Tricks
     private $fitured_img;
 
     /**
-     * @ORM\ManyToOne(targetEntity=users::class, inversedBy="tricks")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
@@ -148,17 +149,23 @@ class Tricks
         return $this;
     }
 
-    public function getFituredImg(): ?string
+    public function getFituredImg()
     {
         return $this->fitured_img;
     }
 
-    public function setFituredImg(string $fitured_img): self
+    public function setFituredImg($file)
     {
-        $this->fitured_img = $fitured_img;
+        $this->fitured_img = $file;
 
         return $this;
     }
+
+    // public function __toString()
+    // {
+    //     return $this->id;
+    // }
+
 
     public function getUsers(): ?users
     {

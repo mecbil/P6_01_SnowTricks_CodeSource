@@ -10,15 +10,15 @@
         <p class='text-center'>
 
             <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#profil" aria-expanded="false" aria-controls="profil">
-                Mon Profil
+                My profile
             </button>
             <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#tricks" aria-expanded="false" aria-controls="tricks">
                 Tricks
             </button>
 
             {% if is_granted('ROLE_ADMIN') %}                
-            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#categories" aria-expanded="false" aria-controls="categories">
-                Catégories
+            <button class="btn btn-warning m-1" role="button" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+                Categories
             </button>
             {% endif %}
 
@@ -42,7 +42,16 @@
         {# Tricks Collapse #}
         <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }}" id="tricks">
             <div class="card card-body">
-                Tricks
+                {{ form_start(formTricks) }}
+                    {{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+                    {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
+                    {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
+                    <div class="hidden" style="display: none;">{{ form_row(formTricks.fitured_img, {attr: {'class': 'hidden-row'} }) }}</div>
+                    <input type="file" name="fitured_img" class="form-control-file">
+                    {# {{ form_row(formTricks.users, {label: 'Utilisateur :', attr: {value: app.user.id} }) }} #}
+                    {{ form_row(formTricks.categories, {label: 'Catégories :' }) }}
+                    <button type="submit" class="btn btn-success">Valider</button>
+                {{ form_end(formTricks) }}
             </div>
         </div>
         {# Categories Collapse #}
@@ -60,6 +69,7 @@
             <h2>Ajouter une catégorie</h2>
                 <div class='container  col-8'>
                     {{ form_start(formCategorie) }}
+                    {# <div class="my-custom-class-for-errors"> {{ form_errors(formCategorie) }} </div> #}
                         {{ form_row(formCategorie.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
 
                         <button type="submit" class="btn btn-success">Valider</button>

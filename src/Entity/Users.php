@@ -55,19 +55,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tricks::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Tricks::class, mappedBy="Users")
      */
     private $tricks;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="users", orphanRemoval=true)
-     */
-    private $users;
-
-    public function __construct()
+    public function __toString()
     {
-        $this->tricks = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        return $this->lastname;
     }
 
     public function getId(): ?int
