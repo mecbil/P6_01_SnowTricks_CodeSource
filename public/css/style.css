@@ -22,3 +22,40 @@
     box-shadow: 1px 1px 1px 1px black;
     
 }
+
+img {
+        margin: 0;
+        padding: 0;
+        /* width: 12rem; */
+        /* height: 120px; */
+        object-fit: cover;
+
+}
+
+.img-thumbnail{
+        height: 140px !important;
+        background-color: #f39c12 !important;
+
+}
+
+
+.card-title {
+        font-size: 1em;
+}
+
+.tricks{
+        display: flex;
+        flex-wrap: wrap; 
+        background-color: #F2F2F2;
+        justify-content: center; 
+
+} 
+
+/* .tricks article{
+        background-color: white;
+        width: 30%;
+        height: 17em;
+        border-radius: 1em;
+        margin: .6em;
+        padding: 0.1em;
+}  */

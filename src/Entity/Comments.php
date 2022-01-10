@@ -107,7 +107,7 @@ class Comments
         return $this->users;
     }
 
-    public function setUsers(?users $users): self
+    public function setUsers(?Users $users): self
     {
         $this->users = $users;
 

@@ -6,19 +6,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Tricks;
+use App\Repository\TricksRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="app_home")
      */
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, TricksRepository $repo): Response
     {
-        // $repo = $doctrine->getRepository(Tricks::class);
-        // $repotrick = $repo->findAll();
-        return $this->render('home/index.html.twig', [
+
+            $tricks = $repo->findAll();
+
+            return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'activee' => 'Home',
+            'Tricks' => $tricks,
         ]);
+        
+
     }
 }
