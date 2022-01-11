@@ -26,7 +26,7 @@ class TricksController extends AbstractController
     }
 
     /**
-     * @Route("/tricks/{id}", name="tricks_show")
+     * @Route("/tricks/details/{id}", name="tricks_show")
      */
     public function showOneTricks($id,ManagerRegistry $doctrine): Response
     {
