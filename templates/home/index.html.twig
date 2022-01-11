@@ -32,11 +32,14 @@
 
         {% for Trick in Tricks %}
         <div class="card border-secondary mb-2 m-2" style="width: 16rem;">
-            {# <div class="card-header" > #}
-                <img src="{{ asset('/images/'~Trick.FituredImg) }}" class="img-thumbnail" alt="image Auberge la Cannebière">
-            {# </div> #}
+            <div class="card-header" >
+                <a href="{{ path('tricks_show',{'id': Trick.id}) }}">
+                    <img src="{{ asset('/images/'~Trick.FituredImg) }}" class="img-thumbnail" alt="image Auberge la Cannebière">
+                </a>
+            </div>
             <div class="card-body">
                 <h6 class="card-title">
+                <p class="border-top"></p>
                     {{ Trick.title }}
                     {% if app.user %}
                         <div class="float-right">

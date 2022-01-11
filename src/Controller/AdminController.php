@@ -4,10 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Categories;
 use App\Entity\Tricks;
-use App\Entity\Users;
 use App\Form\CategoriesType;
 use App\Form\TricksType;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +24,6 @@ class AdminController extends AbstractController
         if ($this->getUser()) 
         {
             $user = $this->getUser();
-            // dump($user->getId());
             $tricks = new Tricks();
             
             $formtricks = $this->createForm(TricksType::class, $tricks);
@@ -36,18 +33,11 @@ class AdminController extends AbstractController
                 $tricks->setCreatedAt(new \DateTime());
                 $tricks->setModifyAt(new \DateTime());
                 $tricks->setUsers($user);
+
                 // Traitement de l'image
-                // $image = $request->files->get('fitured_img');
-                // $fichier = $image->getClientOriginalName();
-                // $image->move(
-                //     $this->getParameter('images_directory'),
-                //     $fichier
-                // );
-                // $tricks->setFituredImg($fichier);
                 $file = $request->files->get('fitured_img');
-                // dd($file);
-                // $fileName = $file->md5(uniqid()).'.'.$file->guessExtension();
                 $fichier = $file->getClientOriginalName();
+
                 // moves the file to the directory where brochures are stored
                 $file->move(
                     $this->getParameter('images_directory'),
@@ -56,7 +46,6 @@ class AdminController extends AbstractController
     
                 $tricks->setFituredImg($fichier);
 
-                // dd($tricks);
                 $em = $doctrine->getManager();
                 $em->persist($tricks);
                 $em->flush();
