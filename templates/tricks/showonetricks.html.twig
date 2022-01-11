@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TricksController!{% endblock %}
+
+{% block body %}
+
+    <div class="Container">
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <section class="tricks">
+
+                <div class="card border-secondary mb-2 m-2" style="width: 16rem;">
+                    <div class="card-header" >
+                        <a href="{{ path('tricks_show',{'id': Tricks.id}) }}">
+                            <img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-thumbnail" alt="image Auberge la Cannebière">
+                        </a>
+                        <span> 
+                            Modifié le :{{ Tricks.modifyAt | date('d/m/y') }} à {{ Tricks.modifyAt | date('H:i') }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            {{ Tricks.content }}
+                        </p>
+                        <h6 class="card-title">
+                        Auteur:
+                        <span class="text-warning">
+                             {{ Tricks.author }}
+                            <p class="border-bottom"></p>
+                        </span>
+                            {{ Tricks.title }}
+                            {% if app.user %}
+                                <div class="float-right">
+                                    <a href="#"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            {% endif %}
+                        </h6>
+
+                    </div>
+                </div>
+
+        </section>
+
+    </div>
+
+{% endblock %}
