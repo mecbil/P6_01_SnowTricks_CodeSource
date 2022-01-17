@@ -40,6 +40,16 @@
 							{# <div class="card border-0 shadow"> #}
                             {% for image in Tricks.pictures %}
                                 <img src="{{ asset('images/'~image.link) }}" alt="" class="">
+								{% if app.user %}
+									<div class=" img-fluid">
+										<a href="#">
+											<i class="fas fa-pencil-alt"></i>
+										</a>
+										<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+											<i class="fas fa-trash-alt text-danger"></i>
+										</a>
+								</div>
+								{% endif %}
                             {% endfor %}
 							{# <img src="{{ asset('images/frontflip-1.jpg') }}" alt="" class=""> #}
 						{# </div> #}
@@ -52,7 +62,17 @@
 						<div class="item">
 							{# <div class="card border-0 shadow"> #}
 							{% for video in Tricks.vids %}
-                                 <iframe width="150" height="100" class="" src="{{ video.link }}" ></iframe>
+                                <iframe width="150" height="100" class="" src="{{ video.link }}" ></iframe>
+								{% if app.user %}
+									<div class=" img-fluid">
+										<a href="#">
+											<i class="fas fa-pencil-alt"></i>
+										</a>
+										<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+											<i class="fas fa-trash-alt text-danger"></i>
+										</a>
+								</div>
+								{% endif %}
                             {% endfor %}
 						{# </div> #}
 						</div>
@@ -114,10 +134,17 @@
 				</div>
                 {# Affichage des commentaires #}
                 <div class="container text-center">
-                    {% for comment in Tricks.comments %}
-						<p>{{ comment.content }}</p>
-                        
+                    {% for comment in Tricks.tricks %}
+						<p class="btn-success m-2">{{ comment.content }}</p>
+						{% if app.user %}
+							<div class=" text-right img-fluid">
+								<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+									<i class="fas fa-trash-alt text-danger"></i>
+								</a>
+						</div>
+						{% endif %}
                     {% endfor %}
+					{# <p>{{ comments.content }} les coucous</p> #}
 					{# {{ vids.link }} #}
                 </div>
 			</div>

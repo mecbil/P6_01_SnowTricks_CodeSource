@@ -104,8 +104,6 @@ class TricksController extends AbstractController
 
         // Add a comment
         $user = $this->getUser();
-        $repocomment = $doctrine->getRepository(Comments::class);
-        $comments = $repocomment->findAll();
 
         $comments = new Comments();
         $formcomments = $this->createForm(CommentsType::class, $comments);
@@ -126,8 +124,8 @@ class TricksController extends AbstractController
             $onglet = 'categories';
             return $this->redirectToRoute('tricks_show', [
                 'onglet' => $onglet,
-                'id' => $id
-                
+                'id' => $id,
+
             ]);
         }
 
@@ -138,9 +136,6 @@ class TricksController extends AbstractController
             'formpictures' => $formpictures->createView(),
             'formvids' => $formvids->createView(),
             'formcomments' => $formcomments->createView(),
-            // 'comments' => $comments,
-            // 'images' => null,
-            // 'videos' => null,
 
         ]);
     }
