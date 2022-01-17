@@ -1,50 +1,128 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TricksController!{% endblock %}
+{% block title %}List Tricks!
+{% endblock %}
 
 {% block body %}
 
-    <div class="Container">
+	<div class="Container">
 
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endfor %}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-danger" role="alert">{{ message }}</div>
+		{% endfor %}
 
-        <section class="tricks">
+		<section class="">
+			<div class="container-fluid">
 
-                <div class="card border-secondary mb-2 m-2" style="width: 16rem;">
-                    <div class="card-header" >
-                        <a href="{{ path('tricks_show',{'id': Tricks.id}) }}">
-                            <img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-thumbnail" alt="image Auberge la Cannebière">
-                        </a>
-                        <span> 
-                            Modifié le :{{ Tricks.modifyAt | date('d/m/y') }} à {{ Tricks.modifyAt | date('H:i') }}
-                        </span>
+				<picture class="trickspic container-fluid">
+					{% if app.user %}
+						<div class="lesfas img-fluid">
+							<a href="#">
+								<i class="fas fa-pencil-alt"></i>
+							</a>
+							<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+								<i class="fas fa-trash-alt text-danger"></i>
+							</a>
+						</div>
+					{% endif %}
+					<p>
+						<img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-fluid" alt="{{ Tricks.title }}">
+					</p>
+				</picture>
+                {# Affichage des Images et Video #}
+				<div class="imgvids mb-4">
+					{# <div class="container"> #}
+					{# <h1 class="text-center fw-bold display-1 mb-5">Owl <span class="text-danger">Carousel</span></h1> #}
+
+					{# <div class=""> #}
+						<div class="owl-carousel owl-theme"> <div
+							class="item">
+							{# <div class="card border-0 shadow"> #}
+                            {% for image in Tricks.pictures %}
+                                <img src="{{ asset('images/'~image.link) }}" alt="" class="">
+                            {% endfor %}
+							{# <img src="{{ asset('images/frontflip-1.jpg') }}" alt="" class=""> #}
+						{# </div> #}
+						</div>
+
+					</div>
+					{# </div> #}
+					{# <div class=""> #}
+					<div class="owl-carousel owl-theme">
+						<div class="item">
+							{# <div class="card border-0 shadow"> #}
+							{% for video in Tricks.vids %}
+                                 <iframe width="150" height="100" class="" src="{{ video.link }}" ></iframe>
+                            {% endfor %}
+						{# </div> #}
+						</div>
+					</div>
+					{# </div> #}
+				</div>
+                {# Ajout des Images, Video et commentaires #}
+				<div class='container'>
+					<p class='text-center'>
+                        {% if app.user %}	
+                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#image" aria-expanded="false" aria-controls="image">
+                                Ajouter une Image
+                            </button>
+                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#vids" aria-expanded="false" aria-controls="vids">
+                                Ajouter une Video
+                            </button>
+                        
+                            <button class="btn btn-warning m-1" role="button" data-bs-toggle="collapse" href="#comments" aria-expanded="false" aria-controls="comments">
+                                Ajouter un Commentaire
+                            </button>
+						{% endif %}
+
+					</p>
+					{# Vids Collapse #}
+					<div class="collapse " id="vids">
+						<div class="card card-body">
+                            {{ form_start(formvids) }}
+                                {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+								{{ form_row(formvids.link) }}
+                                <button type="submit" class="btn btn-success">Ajouter une Video</button>
+                            {{ form_end(formvids) }}
+						</div> 
                     </div>
-                    <div class="card-body">
-                        <p>
-                            {{ Tricks.content }}
-                        </p>
-                        <h6 class="card-title">
-                        Auteur:
-                        <span class="text-warning">
-                             {{ Tricks.author }}
-                            <p class="border-bottom"></p>
-                        </span>
-                            {{ Tricks.title }}
-                            {% if app.user %}
-                                <div class="float-right">
-                                    <a href="#"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)"><i class="fas fa-trash-alt"></i></a>
-                                </div>
-                            {% endif %}
-                        </h6>
-
+                    {# Images Collapse #}
+                    <div class="collapse " id="image">
+                        <div class="card card-body">
+                            {{ form_start(formpictures) }}
+                                {# {% if form_errors(formPictures)|length > 0 %}
+                                    <div class="alert alert-danger">
+                                        {{ form_errors(formPictures) }}
+                                    </div>
+                                {% endif %} #}
+                                {{ form_row(formpictures.label, {attr: {'placeholder': 'Titre ...'} }) }}
+                                <div class="hidden" style="display: none;">{{ form_row(formpictures.link, {attr: {'class': 'hidden-row'} }) }}</div>
+                                <p><input type="file" name="Imagetricks" class="form-control-file"></p>
+                                <button type="submit" class="btn btn-success">Ajouter cette image</button>
+                            {{ form_end(formpictures) }}
+                        </div>
                     </div>
+                    {# Categories Collapse #}
+                    <div class="collapse " id="comments">
+                        <div class="card card-body">
+                            {{ form_start(formcomments) }}
+                                {{ form_row(formcomments.content, {label: 'Contenu :', attr: {'placeholder': 'Votre commentaire ...'} }) }}
+                                <button type="submit" class="btn btn-success">Ajouter</button>
+                            {{ form_end(formcomments) }}
+                        </div>
+                    </div>
+				</div>
+                {# Affichage des commentaires #}
+                <div class="container text-center">
+                    {% for comment in Tricks.comments %}
+						<p>{{ comment.content }}</p>
+                        
+                    {% endfor %}
+					{# {{ vids.link }} #}
                 </div>
+			</div>
 
-        </section>
+		</section>
 
-    </div>
-
+	</div>
 {% endblock %}

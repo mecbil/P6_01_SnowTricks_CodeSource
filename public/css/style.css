@@ -34,7 +34,82 @@
         background-color: #f39c12 !important;
 }
 
+.trickspic {
+        display: flex;
+        justify-content: center;
+}
 
+.carouselimages{
+        width: 150px;
+        height: 150px;
+}
+
+.owl-carousel .owl-item img {
+        /* display: flex !important; */
+        width: 120px !important;
+        height: 100px;
+}
+
+.mb-4{
+        margin-left: 0.6rem;
+        margin-right: 0.6rem;
+}
+
+.no-js .owl-carousel, .owl-carousel.owl-loaded {
+        width: 400px;
+    }
+
+/* .owl-item{
+        width: 362px !important;
+        margin-right: 4px !important;
+} */
+
+.carouselvids{
+        width: 150px;
+        height: 150px;
+}
+
+.imgvids {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+}
+
+.imgvidsicones{
+        display: flex;
+        justify-content:center;
+}
+
+.imgvids img{
+        height: 280px;
+}
+
+.fa-chevron-down {
+        position: relative;
+        left: 50%;
+}
+
+.trickspic img{
+        /* width: 950px;
+        height: 450px; */
+        object-fit:contain;
+}
+
+.lesfas{
+        position: absolute;
+        left: 88%;
+        top: 14%;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 2px 5px;
+        background-color: white;
+}
+
+.titre{
+        position: absolute;
+        left: 50%;
+        top: 50%; 
+}
 .card-title {
         font-size: 1em;
 }
