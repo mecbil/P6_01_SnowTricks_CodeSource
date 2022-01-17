@@ -26,8 +26,7 @@ class TricksType extends AbstractType
                 'data_class'=> null, 
                 'label' => 'Images mises en avant :',
                 'mapped' => false,
-                'required' => false,
-                // 'style' => 'display:none',               
+                'required' => false,             
             ])
             // ->add('users', EntityType::class, [
             //     // looks for choices from this entity

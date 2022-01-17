@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Categories;
-use App\Entity\Tricks;
 use App\Form\CategoriesType;
+use App\Entity\Tricks;
 use App\Form\TricksType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class AdminController extends AbstractController
                 $file = $request->files->get('fitured_img');
                 $fichier = $file->getClientOriginalName();
 
-                // moves the file to the directory where brochures are stored
+                // moves the file to the directory where images are stored
                 $file->move(
                     $this->getParameter('images_directory'),
                     $fichier
@@ -55,8 +55,6 @@ class AdminController extends AbstractController
                     'onglet' => $onglet, 
                     
                 ]);
-           
-
             }
 
             $repocat = $doctrine->getRepository(Categories::class);

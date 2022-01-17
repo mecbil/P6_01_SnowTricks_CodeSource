@@ -1,70 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Snow Tricks!{% endblock %}</title>
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Snow Tricks!
+			{% endblock %}
+		</title>
+		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+		<link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">
 
-      
-        {% block stylesheets %}
+		{# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> #}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> {% block stylesheets %}{% endblock %}
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Poppins &display=swap');
 
-        {% endblock %}
+			* {
+				font-family: 'Poppins', sans-serif;
+			}
+
+			img {
+				height: 280px;
+			}
+
+			body {
+				background: hsl(0, 0, 94%);
+			}
+		</style>
 
 
-    </head>
-    <body>
+	</head>
+	<body>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container-fluid ">
-            <a class="navbar-brand" href="/">Snow Tricks </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Home' ? 'active' : '' }}" href="{{ path('app_home') }}">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Tricks' ? 'active' : '' }}" href="{{ path('tricks') }}">Tricks</a>
-                  </li>
-                  {% if app.user is null %}
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Connexion' ? 'active' : '' }}" href="{{ path('app_login') }}">Sign in</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Register' ? 'active' : '' }}" href="{{ path('app_register') }}">Sign up</a>
-                  </li>
-                  {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Admin' ? 'active' : '' }}" href="{{ path('admin') }}">Dashbord</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link {{ (activee)=='Logout' ? 'active' : '' }}" href="{{ path('app_logout') }}">Logout</a>
-                  </li>
-                  {% endif %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid ">
+				<a class="navbar-brand" href="/">Snow Tricks
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link {{ (activee)=='Home' ? 'active' : '' }}" href="{{ path('app_home') }}">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link {{ (activee)=='Tricks' ? 'active' : '' }}" href="{{ path('tricks') }}">Tricks</a>
+						</li>
+						{% if app.user is null %}
+							<li class="nav-item">
+								<a class="nav-link {{ (activee)=='Connexion' ? 'active' : '' }}" href="{{ path('app_login') }}">Sign in</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link {{ (activee)=='Register' ? 'active' : '' }}" href="{{ path('app_register') }}">Sign up</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link {{ (activee)=='Admin' ? 'active' : '' }}" href="{{ path('admin') }}">Dashbord</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link {{ (activee)=='Logout' ? 'active' : '' }}" href="{{ path('app_logout') }}">Logout</a>
+							</li>
+						{% endif %}
 
-              </ul>
-            </div>
-          </div>
-      </nav>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-      <div class="Container">
-          {% block body %}{% endblock %}
-      </div>
-      
-      <div class="container-fluid">
-        <footer class="py-3 my-4 border-top text-center">
-          <span class="text-muted text-center">&copy; 2021 Nabil Mecili, tous droit réservés</span>
-        </footer>
-      </div>
-        
-      {% block javascripts %}
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-        {{ encore_entry_script_tags('app') }}
-      {% endblock %}
-    </body>
-</html>
+		<div class="Container"> {% block body %}{% endblock %}
+			</div>
+
+			<div class="container-fluid">
+				<footer class="py-3 my-4 border-top text-center">
+					<span class="text-muted text-center">&copy; 2021 Nabil Mecili, tous droit réservés</span>
+				</footer>
+			</div>
+
+			{% block javascripts %}
+
+
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+				<!-- Option 1: Bootstrap Bundle with Popper -->
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+				<script>
+					$('.owl-carousel').owlCarousel({
+loop: true,
+margin: 15,
+nav: true,
+responsive: {
+0: {
+items: 1
+},
+600: {
+items: 2
+},
+1000: {
+items: 3
+}
+}
+})
+				</script>
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
+	</html>

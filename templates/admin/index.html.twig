@@ -48,7 +48,6 @@
                     {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
                     <div class="hidden" style="display: none;">{{ form_row(formTricks.fitured_img, {attr: {'class': 'hidden-row'} }) }}</div>
                     <input type="file" name="fitured_img" class="form-control-file">
-                    {# {{ form_row(formTricks.users, {label: 'Utilisateur :', attr: {value: app.user.id} }) }} #}
                     {{ form_row(formTricks.categories, {label: 'Catégories :' }) }}
                     <button type="submit" class="btn btn-success">Valider</button>
                 {{ form_end(formTricks) }}
@@ -69,7 +68,7 @@
             <h2>Ajouter une catégorie</h2>
                 <div class='container  col-8'>
                     {{ form_start(formCategorie) }}
-                    {# <div class="my-custom-class-for-errors"> {{ form_errors(formCategorie) }} </div> #}
+                        {# <div class="my-custom-class-for-errors"> {{ form_errors(formCategorie) }} </div> #}
                         {{ form_row(formCategorie.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
 
                         <button type="submit" class="btn btn-success">Valider</button>
