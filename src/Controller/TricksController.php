@@ -41,8 +41,6 @@ class TricksController extends AbstractController
         $tricks = $repotricks->find($id);
         $repocomments = $doctrine->getRepository(Comments::class);
         $comments = $repocomments->findAll();
-        $repopictures = $doctrine->getRepository(Pictures::class);
-        $pics = $repocomments->findAll();
 
         // Add picture
         $pictures = new Pictures();
@@ -87,8 +85,6 @@ class TricksController extends AbstractController
         if($formvids->isSubmitted() && $formvids->isValid()) {
 
             $vids->setTricks($tricks);
-            // dump($formvids);
-            // dump($vids);
 
             $em = $doctrine->getManager();
             $em->persist($vids);
