@@ -42,10 +42,10 @@
 												<div class="card-title text-center">
 													{% if app.user %}
 														<div class="">
-															{# <a href="#">
+															<a href="#">
 																<i class="fas fa-pencil-alt"></i>
-															</a> #}
-															<a href="{{ path('pictures_delete', {'id': image.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.id }} ?`)">
+															</a>
+															<a href="{{ path('pictures_delete', {'id': image.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
 																<i class="fas fa-trash-alt text-danger"></i>
 															</a>
 														</div>
@@ -73,7 +73,7 @@
 															<a href="#">
 																<i class="fas fa-pencil-alt"></i>
 															</a>
-															<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+															<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
 																<i class="fas fa-trash-alt text-danger"></i>
 															</a>
 														</div>
