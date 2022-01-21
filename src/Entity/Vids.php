@@ -28,7 +28,7 @@ class Vids
     private $link;
 
     /**
-     * @ORM\ManyToOne(targetEntity=tricks::class, inversedBy="vids")
+     * @ORM\ManyToOne(targetEntity=Tricks::class, inversedBy="vids")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tricks;
