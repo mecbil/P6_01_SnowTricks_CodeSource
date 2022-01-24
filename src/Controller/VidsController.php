@@ -51,6 +51,7 @@ class VidsController extends AbstractController
         $formvids->handleRequest($request);
 
         if ($formvids->isSubmitted() && $formvids->isValid()) {
+
             $em = $doctrine->getManager();
             $em->flush();
 
