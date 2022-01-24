@@ -71,7 +71,8 @@ class TricksController extends AbstractController
             $onglet = 'categories';
             return $this->redirectToRoute('tricks_show', [
                 'onglet' => $onglet,
-                'id' => $id
+                'id' => $id,
+                'onglet' => '',
                 
             ]);
         }
@@ -93,7 +94,8 @@ class TricksController extends AbstractController
             $onglet = 'categories';
             return $this->redirectToRoute('tricks_show', [
                 'onglet' => $onglet,
-                'id' => $id
+                'id' => $id,
+                'onglet' => '',
                 
             ]);
         }
@@ -121,6 +123,7 @@ class TricksController extends AbstractController
             return $this->redirectToRoute('tricks_show', [
                 'onglet' => $onglet,
                 'id' => $id,
+                'onglet' => '',
 
             ]);
         }
@@ -128,10 +131,12 @@ class TricksController extends AbstractController
         return $this->render('tricks/showonetricks.html.twig', [
             'controller_name' => 'TricksController',
             'activee' => 'Tricks',
+            'subvid' => $vids->getId() !== null,
             'Tricks' => $tricks,
             'formpictures' => $formpictures->createView(),
             'formvids' => $formvids->createView(),
             'formcomments' => $formcomments->createView(),
+            'onglet' => '',
 
         ]);
     }
