@@ -13,6 +13,20 @@
         justify-content: center;
 }
 
+/* .modal-backdrop{
+        position:fixed !important ; 
+        top: 50% !important;
+        left: 50% !important;
+
+} */
+
+.card-title {
+        margin-bottom: -0.25rem !important;
+}
+
+.card-body {
+        padding: 0.25rem !important;
+      }
 #profil img
 {
     max-width: 360px;

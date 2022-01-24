@@ -32,8 +32,8 @@
                 {# Affichage des Images et Video #}
 				<div class="imgvids">
 					<div class="container-fluid my-5">
-						<div class="row">
-							<div class="col-6 m-auto">
+						<div class="">
+							<div class="imgvids col-6 m-2">
 								<div class="owl-carousel owl-theme">
 									{% for image in Tricks.pictures %}
 									    <div class="card border-0 shadow">
@@ -42,17 +42,22 @@
 												<div class="card-title text-center">
 													{% if app.user %}
 														<div class="">
-															<a href="#">
-																<i class="fas fa-pencil-alt"></i>
+															<a  href="{{ path('pictures_edit', {'id': image.id }) }}#im" >
+																<i class="fas fa-pencil-alt " ></i>
 															</a>
-															<a href="{{ path('pictures_delete', {'id': image.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
-																<i class="fas fa-trash-alt text-danger"></i>
+															
+															{# <button type="button" data-bs-toggle="modal" data-bs-target="#ModalPicture">I register !</button> #}
+															
+
+															<a href="{{ path('pictures_delete', {'id': image.id }) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
+																<i class="fas fa-trash-alt text-danger m-2"></i>
 															</a>
 														</div>
 													{% endif %}
 												</div>
 											</div>
 										</div>
+
 									{% endfor %}
 								</div>
 							</div>
@@ -60,8 +65,8 @@
 					</div>
 
 					<div class="container-fluid my-5">
-						<div class="row">
-							<div class="col-6 m-auto">
+						<div class="">
+							<div class="col-6 m-2">
 								<div class="owl-carousel">
 									{% for video in Tricks.vids %}
 										<div class="card border-0 shadow">
@@ -70,11 +75,11 @@
 												<div class="card-title text-center">
 													{% if app.user %}
 														<div class="">
-															<a href="#">
+															<a href="{{ path('vids_edit', {'id': video.id }) }}#vd">
 																<i class="fas fa-pencil-alt"></i>
 															</a>
 															<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
-																<i class="fas fa-trash-alt text-danger"></i>
+																<i class="fas fa-trash-alt text-danger m-2"></i>
 															</a>
 														</div>
 													{% endif %}
@@ -91,7 +96,7 @@
 				<div class='container'>
 					<p class='text-center'>
                         {% if app.user %}	
-                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#image" aria-expanded="false" aria-controls="image">
+                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#images" aria-expanded="false" aria-controls="images">
                                 Ajouter une Image
                             </button>
                             <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#vids" aria-expanded="false" aria-controls="vids">
@@ -105,17 +110,21 @@
 
 					</p>
 					{# Vids Collapse #}
-					<div class="collapse " id="vids">
+					<div class="collapse {{ (onglet)=='video' ? 'show' : '' }}" id="vids">
 						<div class="card card-body">
                             {{ form_start(formvids) }}
-                                {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+                                <span id="vd"></span> {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
 								{{ form_row(formvids.link) }}
-                                <button type="submit" class="btn btn-success">Ajouter une Video</button>
+								{% if subvid %}
+									<button type="submit" class="btn btn-success m-2">Modifier la Video</button><a class="btn btn-danger" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+								{% else %}
+										<button type="submit" class="btn btn-success">Ajouter une Video</button>
+								{% endif %}								
                             {{ form_end(formvids) }}
 						</div> 
                     </div>
                     {# Images Collapse #}
-                    <div class="collapse " id="image">
+                    <div class="collapse {{ (onglet)=='imgage' ? 'show' : '' }}" id="images">
                         <div class="card card-body">
                             {{ form_start(formpictures) }}
                                 {# {% if form_errors(formPictures)|length > 0 %}
@@ -123,7 +132,7 @@
                                         {{ form_errors(formPictures) }}
                                     </div>
                                 {% endif %} #}
-                                {{ form_row(formpictures.label, {attr: {'placeholder': 'Titre ...'} }) }}
+                               <span id="im"></span> {{ form_row(formpictures.label, {attr: {'placeholder': 'Titre ...'} }) }}
                                 <div class="hidden" style="display: none;">{{ form_row(formpictures.link, {attr: {'class': 'hidden-row'} }) }}</div>
                                 <p><input type="file" name="Imagetricks" class="form-control-file"></p>
                                 <button type="submit" class="btn btn-success">Ajouter cette image</button>
@@ -142,6 +151,5 @@
 				</div>
 			</div>
 		</section>
-
 	</div>
 {% endblock %}
