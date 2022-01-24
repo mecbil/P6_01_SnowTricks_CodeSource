@@ -114,7 +114,7 @@
 						<div class="card card-body">
                             {{ form_start(formvids) }}
                                 <span id="vd"></span> {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
-								{{ form_row(formvids.link) }}
+								{{ form_row(formvids.link, {attr: {'placeholder': 'Ex: https://www.youtube.com/watch?v=e5udJTjbYzw ...'} })  }}
 								{% if subvid %}
 									<button type="submit" class="btn btn-success m-2">Modifier la Video</button><a class="btn btn-danger" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
 								{% else %}

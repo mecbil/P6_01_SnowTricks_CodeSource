@@ -82,10 +82,11 @@ class TricksController extends AbstractController
 
         $formvids = $this->createForm(VidsType::class, $vids);
         $formvids->handleRequest($request);
-
+        // dump($vids->getLink());
         if($formvids->isSubmitted() && $formvids->isValid()) {
 
             $vids->setTricks($tricks);
+            $vids->setLink(str_replace("watch?v=","embed/",$vids->getLink()));
 
             $em = $doctrine->getManager();
             $em->persist($vids);
