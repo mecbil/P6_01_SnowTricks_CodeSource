@@ -43,7 +43,7 @@
         <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }}" id="tricks">
             <div class="card card-body">
                 {{ form_start(formTricks) }}
-                    {{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+                    <span id="tr"></span>{{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
                     {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
                     {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
                     <div class="hidden" style="display: none;">{{ form_row(formTricks.fitured_img, {attr: {'class': 'hidden-row'} }) }}</div>

@@ -20,8 +20,8 @@ class TricksType extends AbstractType
             ->add('title')
             ->add('author', HiddenType::class)
             ->add('content')
-            ->add('createdAt', HiddenType::class)
-            ->add('modifyAt', HiddenType::class)
+            // ->add('createdAt', HiddenType::class)
+            // ->add('modifyAt', HiddenType::class)
             ->add('fitured_img', fileType::class, [
                 'data_class'=> null, 
                 'label' => 'Images mises en avant :',

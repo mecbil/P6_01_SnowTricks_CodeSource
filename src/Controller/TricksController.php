@@ -141,4 +141,22 @@ class TricksController extends AbstractController
 
         ]);
     }
+
+    // /**
+    //  * @Route("/tricks/{id}/edit", name="tricks_edit")
+    //  */
+    // public function edit($id, Request $request, ManagerRegistry $doctrine): Response
+    // {
+    //     $repocat = $doctrine->getRepository(Tricks::class);
+    //     $tricks = $repocat->findAll($id);
+
+    //     $formtricks = $this->createForm(VidsType::class, $tricks);
+
+    //     return $this->render('admin/index.html.twig', [
+    //         'activee' => 'Tricks',
+    //         'Tricks' => 'Tricks',
+    //         'onglet' => 'tricks',
+    //         'formTricks' => $formtricks->createView(),
+    //     ]);
+    // }
 }
