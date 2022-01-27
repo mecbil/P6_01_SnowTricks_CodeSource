@@ -17,7 +17,7 @@
 				<picture class="trickspic container-fluid">
 					{% if app.user %}
 						<div class="lesfas img-fluid">
-							<a href="#">
+							<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
 								<i class="fas fa-pencil-alt"></i>
 							</a>
 							<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">

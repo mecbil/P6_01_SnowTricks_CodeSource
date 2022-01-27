@@ -16,11 +16,8 @@ class UsersController extends AbstractController
      */
     public function index(): Response
     {
-        $onglet = 'tricks';
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'UsersController',
-            'onglet' => $onglet,
-            
+            'onglet' => 'tricks',   
         ]);
     }
 

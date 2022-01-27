@@ -15,48 +15,55 @@ use Doctrine\Persistence\ManagerRegistry;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/Admin/{onglet}", name="admin")
-     * @Route("/Admin/{onglet}", name="admin_tricks")
-     * @Route("/Admin/{onglet}", name="admin_categories")
+     * @Route("/Admin", name="Admin")
+     * @Route("/tricks/{id}/edit", name="tricks_edit")
      */
-    public function showadmin($onglet = null, Request $request, ManagerRegistry $doctrine): Response
+    public function showadmin(Tricks $tricks = null, Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->getUser()) 
         {
             $user = $this->getUser();
-            $tricks = new Tricks();
+            //Creat or edit Trick
+            if (!$tricks) {
+                $tricks = new Tricks();
+                $tricks->setCreatedAt(new \DateTime());
+
+                $tricks->setUsers($user);   
+            } 
             
             $formtricks = $this->createForm(TricksType::class, $tricks);
             $formtricks->handleRequest($request);
 
             if($formtricks->isSubmitted() && $formtricks->isValid()) {
-                $tricks->setCreatedAt(new \DateTime());
-                $tricks->setModifyAt(new \DateTime());
-                $tricks->setUsers($user);
 
-                // Traitement de l'image
-                $file = $request->files->get('fitured_img');
-                $fichier = $file->getClientOriginalName();
+                if ($request->files->get('fitured_img')) {
 
-                // moves the file to the directory where images are stored
-                $file->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
+                    // Traitement de l'image
+                    $file = $request->files->get('fitured_img');
+                    $fichier = $file->getClientOriginalName();
     
-                $tricks->setFituredImg($fichier);
+                    // moves the file to the directory where images are stored
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+    
+                    $tricks->setFituredImg($fichier);
+                }
+                
+                $tricks->setModifyAt(new \DateTime());
 
                 $em = $doctrine->getManager();
                 $em->persist($tricks);
                 $em->flush();
 
-                $onglet = 'categories';
-                return $this->redirectToRoute('admin', [
-                    'onglet' => $onglet, 
-                    
+                return $this->redirectToRoute('tricks_show', [
+                    'onglet' => 'profil',
+                    'id' =>$tricks->getId(),
                 ]);
             }
 
+            //Creat category
             $repocat = $doctrine->getRepository(Categories::class);
             $cat = $repocat->findAll();
             $categorie = new Categories();
@@ -66,6 +73,7 @@ class AdminController extends AbstractController
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()) {
+                
                 $em = $doctrine->getManager();
                 $em->persist($categorie);
                 $em->flush();
@@ -74,9 +82,10 @@ class AdminController extends AbstractController
                 return $this->redirectToRoute('admin', ['onglet' => $onglet]);
 
             }
-            $onglet = 'profil';
+
+            (!$tricks->getId())==null ? $onglet='tricks' : $onglet='profil';
+
             return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
             'activee' => 'Admin',
             'formCategorie' => $form->createView(),
             'formTricks' => $formtricks->createView(),
