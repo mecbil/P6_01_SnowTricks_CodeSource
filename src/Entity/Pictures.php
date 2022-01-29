@@ -29,7 +29,7 @@ class Pictures
 
     /**
      * @ORM\ManyToOne(targetEntity=Tricks::class, inversedBy="pictures")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $tricks;
 

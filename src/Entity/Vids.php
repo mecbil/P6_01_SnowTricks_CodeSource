@@ -29,7 +29,7 @@ class Vids
 
     /**
      * @ORM\ManyToOne(targetEntity=Tricks::class, inversedBy="vids")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $tricks;
 
