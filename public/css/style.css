@@ -16,9 +16,10 @@ img {
 }
 
 .icone {
-  position:fixed;
+  position: fixed;
   top: 50%;
 }
+
 #profil section {
   display: flex;
   justify-content: center;
@@ -30,9 +31,9 @@ img {
         left: 50% !important;
 
 } */
-
 .card-title {
   margin-bottom: -0.25rem !important;
+  font-size: 1em;
 }
 
 .card-body {
@@ -44,9 +45,7 @@ img {
 }
 
 .trickspic img {
-        /* width: 950px;
-        height: 450px; */
-  object-fit:contain;
+  object-fit: contain;
 }
 
 #profil img {
@@ -119,8 +118,6 @@ iframe {
   left: 50%;
 }
 
-
-
 .lesfas {
   position: absolute;
   left: 88%;
@@ -134,16 +131,12 @@ iframe {
 .titre {
   position: absolute;
   left: 50%;
-  top: 50%; 
-}
-
-.card-title {
-  font-size: 1em;
+  top: 50%;
 }
 
 .tricks {
   display: flex;
-  flex-wrap: wrap; 
-  background-color: #F2F2F2;
-  justify-content: center; 
+  flex-wrap: wrap;
+  background-color: #f2f2f2;
+  justify-content: center;
 }
