@@ -4,6 +4,12 @@
         font-family: 'Poppins', sans-serif;
 }
 
+img {
+        margin: 0;
+        padding: 0;
+        object-fit: cover;
+}
+
 .carouselimg {
         height: 500px;
         width: 100%;
@@ -13,8 +19,7 @@
         position:fixed;
         top: 50%;
 }
-#profil section
-{
+#profil section {
         display: flex;
         justify-content: center;
 }
@@ -32,9 +37,13 @@
 
 .card-body {
         padding: 0.25rem !important;
-      }
-#profil img
-{
+}
+
+.imgvids img {
+        height: 112px;
+}
+
+#profil img {
     max-width: 360px;
     height: 250px;
     border-radius: 10px 0 0 10px;
@@ -43,13 +52,7 @@
     box-shadow: 1px 1px 1px 1px black;
 }
 
-img {
-        margin: 0;
-        padding: 0;
-        object-fit: cover;
-}
-
-.img-thumbnail{
+.img-thumbnail {
         width: 100%;
         height: 140px !important;
         background-color: #f39c12 !important;
@@ -60,7 +63,7 @@ img {
         justify-content: center;
 }
 
-.carouselimages{
+.carouselimages {
         width: 150px;
         height: 150px;
 }
@@ -89,7 +92,7 @@ img {
         margin-right: 4px !important;
 } */
 
-.carouselvids{
+.carouselvids {
         width: 150px;
         height: 150px;
 }
@@ -100,9 +103,7 @@ img {
 }
 
 
-.imgvids img{
-        height: 112px;
-}
+
 
 iframe {
         border: 0;
@@ -115,13 +116,13 @@ iframe {
         left: 50%;
 }
 
-.trickspic img{
+.trickspic img {
         /* width: 950px;
         height: 450px; */
         object-fit:contain;
 }
 
-.lesfas{
+.lesfas {
         position: absolute;
         left: 88%;
         top: 14%;
@@ -131,7 +132,7 @@ iframe {
         background-color: white;
 }
 
-.titre{
+.titre {
         position: absolute;
         left: 50%;
         top: 50%; 
@@ -140,7 +141,7 @@ iframe {
         font-size: 1em;
 }
 
-.tricks{
+.tricks {
         display: flex;
         flex-wrap: wrap; 
         background-color: #F2F2F2;
