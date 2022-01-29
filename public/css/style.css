@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins &display=swap');
 
 * {
-        font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 img {
-        margin: 0;
-        padding: 0;
-        object-fit: cover;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
 }
 
 .carouselimg {
-        height: 500px;
-        width: 100%;
+  height: 500px;
+  width: 100%;
 }
 
 .icone {
-        position:fixed;
-        top: 50%;
+  position:fixed;
+  top: 50%;
 }
 #profil section {
-        display: flex;
-        justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* .modal-backdrop{
@@ -32,40 +32,46 @@ img {
 } */
 
 .card-title {
-        margin-bottom: -0.25rem !important;
+  margin-bottom: -0.25rem !important;
 }
 
 .card-body {
-        padding: 0.25rem !important;
+  padding: 0.25rem !important;
 }
 
 .imgvids img {
-        height: 112px;
+  height: 112px;
+}
+
+.trickspic img {
+        /* width: 950px;
+        height: 450px; */
+  object-fit:contain;
 }
 
 #profil img {
-    max-width: 360px;
-    height: 250px;
-    border-radius: 10px 0 0 10px;
-    margin-right: 40px;
-    object-fit: cover;
-    box-shadow: 1px 1px 1px 1px black;
+  max-width: 360px;
+  height: 250px;
+  border-radius: 10px 0 0 10px;
+  margin-right: 40px;
+  object-fit: cover;
+  box-shadow: 1px 1px 1px 1px black;
 }
 
 .img-thumbnail {
-        width: 100%;
-        height: 140px !important;
-        background-color: #f39c12 !important;
+  width: 100%;
+  height: 140px !important;
+  background-color: #f39c12 !important;
 }
 
 .trickspic {
-        display: flex;
-        justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .carouselimages {
-        width: 150px;
-        height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 /* .item {
@@ -93,57 +99,51 @@ img {
 } */
 
 .carouselvids {
-        width: 150px;
-        height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .imgvids {
-        display: flex;
-        justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-
-
-
 iframe {
-        border: 0;
-        width: 100%;
-        height: 112px;
+  border: 0;
+  width: 100%;
+  height: 112px;
 }
 
 .fa-chevron-down {
-        position: relative;
-        left: 50%;
+  position: relative;
+  left: 50%;
 }
 
-.trickspic img {
-        /* width: 950px;
-        height: 450px; */
-        object-fit:contain;
-}
+
 
 .lesfas {
-        position: absolute;
-        left: 88%;
-        top: 14%;
-        border: 2px solid black;
-        border-radius: 5px;
-        padding: 2px 5px;
-        background-color: white;
+  position: absolute;
+  left: 88%;
+  top: 14%;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2px 5px;
+  background-color: white;
 }
 
 .titre {
-        position: absolute;
-        left: 50%;
-        top: 50%; 
+  position: absolute;
+  left: 50%;
+  top: 50%; 
 }
+
 .card-title {
-        font-size: 1em;
+  font-size: 1em;
 }
 
 .tricks {
-        display: flex;
-        flex-wrap: wrap; 
-        background-color: #F2F2F2;
-        justify-content: center; 
-} 
+  display: flex;
+  flex-wrap: wrap; 
+  background-color: #F2F2F2;
+  justify-content: center; 
+}
