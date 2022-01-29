@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}List Tricks!
+{% block title %}
+	List Tricks!
 {% endblock %}
 
 {% block body %}
@@ -15,83 +16,76 @@
 			<div class="container-fluid">
 
 				<picture class="trickspic container-fluid">
-					{% if app.user %}
-						<div class="lesfas img-fluid">
-							<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
-								<i class="fas fa-pencil-alt"></i>
-							</a>
-							<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
-								<i class="fas fa-trash-alt text-danger"></i>
-							</a>
-						</div>
-					{% endif %}
-					<p>
+
+					{# <p> #}
 						<img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-fluid" alt="{{ Tricks.title }}">
-					</p>
+						{% if app.user %}
+							<div class="lesfas img-fluid">
+								<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
+									<i class="fas fa-pencil-alt"></i>
+								</a>
+								<a href="#" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+									<i class="fas fa-trash-alt text-danger"></i>
+								</a>
+							</div>
+						{% endif %}					
+					{# </p> #}
 				</picture>
                 {# Affichage des Images et Video #}
 				<div class="imgvids">
-					<div class="container-fluid my-5">
-						<div class="">
-							<div class="imgvids col-6 m-2">
-								<div class="owl-carousel owl-theme">
-									{% for image in Tricks.pictures %}
-									    <div class="card border-0 shadow">
-											<img src="{{ asset('images/'~image.link) }}" alt="" class="">
-											<div class="card-body">
-												<div class="card-title text-center">
-													{% if app.user %}
-														<div class="">
-															<a  href="{{ path('pictures_edit', {'id': image.id }) }}#im" >
-																<i class="fas fa-pencil-alt " ></i>
-															</a>
-															
-															{# <button type="button" data-bs-toggle="modal" data-bs-target="#ModalPicture">I register !</button> #}
-															
+					<div class=" col-6 m-2">
+						<div class="owl-carousel owl-theme">
+							{% for image in Tricks.pictures %}
+								<div class="card border-0 shadow">
+									<img src="{{ asset('images/'~image.link) }}" alt="" class="">
+									<div class="card-body">
+										<div class="card-title text-center">
+											{% if app.user %}
+												<div class="">
+													<a  href="{{ path('pictures_edit', {'id': image.id }) }}#im" >
+														<i class="fas fa-pencil-alt " ></i>
+													</a>
+													
+													{# <button type="button" data-bs-toggle="modal" data-bs-target="#ModalPicture">I register !</button> #}
+													
 
-															<a href="{{ path('pictures_delete', {'id': image.id }) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
-																<i class="fas fa-trash-alt text-danger m-2"></i>
-															</a>
-														</div>
-													{% endif %}
+													<a href="{{ path('pictures_delete', {'id': image.id }) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
+														<i class="fas fa-trash-alt text-danger m-2"></i>
+													</a>
 												</div>
-											</div>
+											{% endif %}
 										</div>
-
-									{% endfor %}
+									</div>
 								</div>
-							</div>
+
+							{% endfor %}
 						</div>
 					</div>
-
-					<div class="container-fluid my-5">
-						<div class="">
-							<div class="col-6 m-2">
-								<div class="owl-carousel">
-									{% for video in Tricks.vids %}
-										<div class="card border-0 shadow">
-											<iframe width="172" height="100" class="" src="{{ video.link }}" ></iframe>
-											<div class="card-body">
-												<div class="card-title text-center">
-													{% if app.user %}
-														<div class="">
-															<a href="{{ path('vids_edit', {'id': video.id }) }}#vd">
-																<i class="fas fa-pencil-alt"></i>
-															</a>
-															<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
-																<i class="fas fa-trash-alt text-danger m-2"></i>
-															</a>
-														</div>
-													{% endif %}
+					<div class=" col-6 m-2">
+						<div class="owl-carousel owl-theme">
+							{% for video in Tricks.vids %}
+								<div class="card border-0 shadow">
+									<iframe  src="{{ video.link }}" ></iframe>
+									<div class="card-body">
+										<div class="card-title text-center">
+											{% if app.user %}
+												<div class="">
+													<a href="{{ path('vids_edit', {'id': video.id }) }}#vd">
+														<i class="fas fa-pencil-alt"></i>
+													</a>
+													<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
+														<i class="fas fa-trash-alt text-danger m-2"></i>
+													</a>
 												</div>
-											</div>
+											{% endif %}
 										</div>
-									{% endfor %}
+									</div>
 								</div>
-							</div>
+							{% endfor %}
 						</div>
 					</div>
 				</div>
+
                 {# Ajout des Images, Video et commentaires #}
 				<div class='container'>
 					<p class='text-center'>
@@ -148,6 +142,13 @@
                             {{ form_end(formcomments) }}
                         </div>
                     </div>
+				</div>
+				<div class='container col-lg-4 col-md-6'>
+
+						{% for Comment in Tricks.tricks %}
+							<p class='text-left'><i class="fas fa-user-circle m-2" title="{{ Tricks.author }}"></i>- ** <span class="btn-danger">{{ Comment.content }}</span> ** -</p>
+						{% endfor %}  
+
 				</div>
 			</div>
 		</section>
