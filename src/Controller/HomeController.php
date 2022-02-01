@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Tricks;
 use App\Repository\TricksRepository;
 
 class HomeController extends AbstractController
@@ -17,14 +16,13 @@ class HomeController extends AbstractController
     public function index(ManagerRegistry $doctrine, TricksRepository $repo): Response
     {
 
-            $tricks = $repo->findAll();
+        $tricks = $repo->findBy([], ['modifyAt' => 'DESC']);
 
-            return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'activee' => 'Home',
-            'Tricks' => $tricks,
+        return $this->render('home/index.html.twig', [
+        'activee' => 'Home',
+        'Tricks' => $tricks,
         ]);
-        
-
     }
+
+    
 }
