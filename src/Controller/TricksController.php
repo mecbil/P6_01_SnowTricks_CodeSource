@@ -23,12 +23,28 @@ class TricksController extends AbstractController
     public function showTricks(ManagerRegistry $doctrine): Response
     {
         $repocat = $doctrine->getRepository(Tricks::class);
-        $tricks = $repocat->findAll();
+        $tricks = $repocat->findBy([], ['modifyAt' => 'ASC']);
 
         return $this->render('tricks/showtricks.html.twig', [
-            'controller_name' => 'TricksController',
             'activee' => 'Tricks',
             'Tricks' => $tricks,
+        ]);
+    }
+
+    /**
+     * Get the 15 next tricks in the database and create a Twig file with them that will be displayed via Javascript
+     * 
+     * @Route("/{start}", name="loadMoreTricks", requirements={"start": "\d+"})
+     */
+    public function loadMoreTricks(ManagerRegistry $doctrine, $start = 4)
+    {
+        // Get 4 tricks from the start position
+        $repo = $doctrine->getRepository(Tricks::class);
+        $tricks = $repo->findBy([], ['modifyAt' => 'DESC'], 4, $start);
+
+        return $this->render('home/loadMoreTricks.html.twig', [
+            'activee' => 'Tricks',
+            'Tricks' => $tricks
         ]);
     }
 
