@@ -20,14 +20,24 @@ class TricksController extends AbstractController
     /**
      * @Route("/tricks", name="tricks")
      */
-    public function showTricks(ManagerRegistry $doctrine): Response
+    public function showTricks(ManagerRegistry $doctrine, Request $request): Response
     {
-        $repocat = $doctrine->getRepository(Tricks::class);
-        $tricks = $repocat->findBy([], ['modifyAt' => 'ASC']);
+        $repotricks = $doctrine->getRepository(Tricks::class);
+        // Pagination
+        $limit = 8;
+        $page = (int)$request->query->get('page', 1);
+        $total =$repotricks->findAll();
+        
+        $tricks = $repotricks->findBy([], ['modifyAt' => 'ASC'], $limit,$page*$limit-$limit);
+
 
         return $this->render('tricks/showtricks.html.twig', [
             'activee' => 'Tricks',
             'Tricks' => $tricks,
+            'total' => count($total),
+            'limit' => $limit,
+            'page' => $page,
+
         ]);
     }
 
