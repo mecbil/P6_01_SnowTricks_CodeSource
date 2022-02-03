@@ -140,3 +140,7 @@ iframe {
   background-color: #f2f2f2;
   justify-content: center;
 }
+
+.pagination {
+  justify-content: center;
+}
