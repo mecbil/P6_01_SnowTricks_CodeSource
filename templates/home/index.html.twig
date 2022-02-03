@@ -26,9 +26,10 @@
                 </div>
             </div>
         </div>
+        <a href="#loadMoreTricks"><i class="fas fa-chevron-down fa-4x chevron-down"></i></a> 
         
     </div>
-    <section class="tricks">
+    <section class="tricks" >
             {# <div class="scroll-container">
                 <a href="/#list" class="text-decoration-none arrow-color">
                     <i class="fa fa-arrow-circle-o-down cursor-pointer hover-arrow fa-2x"></i>
@@ -45,7 +46,7 @@
             <div class="card-body">
                 <h6 class="card-title">
                 <p class="border-top"></p>
-                    {{ Trick.title }}
+                    <span class="mx-2">{{ Trick.title }}</span>
                     {% if app.user %}
                         <div class="float-right">
                             <a href="{{ path('tricks_edit', {'id': Trick.id }) }}#tr"><i class="fas fa-pencil-alt"></i></a>
@@ -58,9 +59,10 @@
         {% endfor %}
 
     </section>
-        <div class="row text-center m-5">
-            <button id="loadMoreTricks" class="btn btn-dark col-md-6 col-8 mx-auto">Load more</button>
+        <div class="text-center m-2">
+            <button id="loadMoreTricks" class="btn btn-success px-4">Load more</button>
         </div>
+        <a href="#carouselExampleSlidesOnly"><i class="fas fa-chevron-up fa-4x"></i></a>
     
 {% endblock %}
 {% block javascripts %}

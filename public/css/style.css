@@ -11,8 +11,9 @@ img {
 }
 
 .carouselimg {
-  height: 500px;
+  height: 420px;
   width: 100%;
+  object-fit: fill;
 }
 
 .icone {
@@ -143,4 +144,9 @@ iframe {
 
 .pagination {
   justify-content: center;
+}
+
+.fa-chevron-down, .fa-chevron-up {
+  position: relative;
+  left: 95%;
 }
