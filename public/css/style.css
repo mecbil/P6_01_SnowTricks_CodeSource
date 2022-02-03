@@ -134,7 +134,7 @@ iframe {
   top: 50%;
 }
 
-#tricks {
+.tricks {
   display: flex;
   flex-wrap: wrap;
   background-color: #f2f2f2;
