@@ -28,14 +28,14 @@
         </div>
         
     </div>
-    <section id="tricks">
+    <section class="tricks">
             {# <div class="scroll-container">
                 <a href="/#list" class="text-decoration-none arrow-color">
                     <i class="fa fa-arrow-circle-o-down cursor-pointer hover-arrow fa-2x"></i>
                 </a>
             </div> #}
 
-        {% for Trick in Tricks | slice(0,4)  %}
+        {% for Trick in Tricks | slice(0,8)  %}
         <div class="card border-secondary mb-2 m-2" style="width: 16rem;">
             <div class="card-header" >
                 <a href="{{ path('tricks_show',{'id': Trick.id}) }}">
@@ -71,11 +71,10 @@
         function loadMoreTricks(event) {
             event.preventDefault();
             click++;
-            var start = 4 * click;
+            var start = 8 * click;
             const url = "{{ path('loadMoreTricks') }}" + start;
             axios.get(url).then(function(response) {
-                console.log(response);
-                $("#tricks").append(response.data);
+                $(".tricks").append(response.data);
             }).catch(function (error) {
                 if (response.status === 403) {
                     window.alert("Vous n'êtes pas autorisé à effectuer cette action !");
