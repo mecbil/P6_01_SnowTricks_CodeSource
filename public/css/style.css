@@ -11,7 +11,7 @@ img {
 }
 
 .carouselimg {
-  height: 420px;
+  height: 470px;
   width: 100%;
   object-fit: fill;
 }
@@ -114,11 +114,6 @@ iframe {
   height: 112px;
 }
 
-.fa-chevron-down {
-  position: relative;
-  left: 50%;
-}
-
 .lesfas {
   position: absolute;
   left: 88%;
@@ -146,7 +141,15 @@ iframe {
   justify-content: center;
 }
 
-.fa-chevron-down, .fa-chevron-up {
-  position: relative;
-  left: 95%;
+.fa-chevron-down  {
+  position: absolute;
+  top : 88%;
+  left: 90%;
+  z-index: 10;
+}
+
+.fa-chevron-up {
+  position: absolute;
+  left: 90%;
+  z-index: 10;
 }
