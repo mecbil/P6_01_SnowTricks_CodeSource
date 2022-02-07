@@ -1,0 +1,12 @@
+{# {% extends "base.html.twig" %} #}
+{% block title %}Acces interdit{% endblock %}
+
+{% block body %}
+    <div class="col-6 mx-auto">
+    <h1 class="m-2">Acces Interdit</h1>
+        <p>Code de la l'erreur : {{ status_code}}</p>
+    <p>Message erreur : {{ status_text}}</p>
+    <img  src="{{ asset('images/frontflip-1.jpg') }}" class="carouselimg" alt="Image d'erreur">
+
+    </div>
+{% endblock %}
