@@ -65,6 +65,9 @@ class TricksController extends AbstractController
     {
         $repotricks = $doctrine->getRepository(Tricks::class);
         $tricks = $repotricks->find($id);
+        if (!$tricks) {
+            throw $this->createNotFoundException('Enregistrement non trouvé');
+        }
         $repocomments = $doctrine->getRepository(Comments::class);
         $comments = $repocomments->findAll();
 

@@ -8,18 +8,21 @@ Installation :
 
 Pour utiliser ce Site, il faut suivre les étapes suivantes :
 
-    Créer une base de données nomée "snowtricks" et importer le fichier snowtricks.sql situé à la racine du projet 
+    Créer une base de données nomée "snowtricks" et importer le fichier snowtricks.sql 
+    situé à la racine du projet 
 
-    Entrez vos identifiants de connexion à la base de données dans le fichier .env situé 
-    à la racine du projet.
+    Entrez vos identifiants de connexion à la base de données dans le fichier .env 
+    situé à la racine du projet.
 
     Amusez-vous avec ce Site !
 
 To use this blog, you must follow this steps :
 
-    Create a database named 'snowtricks "and import the snowtricks.sql file located at the root of the project
+    Create a database named 'snowtricks "and import the snowtricks.sql file 
+    located at the root of the project
 
-    Enter your database connection credentials in the .env file located at the root of the project
+    Enter your database connection credentials in the .env file located at 
+    the root of the project
 
     Have fun using this Site !
 

@@ -1,0 +1,13 @@
+{# {% extends "base.html.twig" %} #}
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <div class="col-6 mx-auto">
+    <h1 class="m-2">Page non trouvées </h1>
+    <p>Code de la l'erreur : {{ status_code}}</p>
+    <p>Message erreur : {{ status_text}}</p>
+    <p>Message  : {{ exception.message }}</p>
+
+    <img  src="{{ asset('images/frontflip-1.jpg') }}" class="carouselimg" alt="Image d'erreur">
+    </div>
+{% endblock %}
