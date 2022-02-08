@@ -16,6 +16,7 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/Admin", name="Admin")
+     * * @Route("/tricks/{id}/edit", name="tricks_edit")
      */
     public function showadmin(Tricks $tricks = null, Request $request, ManagerRegistry $doctrine): Response
     {
