@@ -153,3 +153,25 @@ iframe {
   left: 90%;
   z-index: 10;
 }
+
+.commentaire {
+  display: flex;
+  align-items: center;
+}
+
+.commentaire i {
+  font-size: 2em;
+  margin-right: 8px;
+}
+
+.commentaire span {
+  font-size: 1.4em;
+  background-color: #f2f2f2;
+  color: black;
+  padding: 4px 14px;
+}
+
+/* .fa-user-circle {
+  font-size: 2em;
+  margin-right: 8px;
+} */
