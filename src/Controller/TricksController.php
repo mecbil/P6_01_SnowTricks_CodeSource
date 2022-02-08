@@ -42,19 +42,36 @@ class TricksController extends AbstractController
     }
 
     /**
-     * Get the 15 next tricks in the database and create a Twig file with them that will be displayed via Javascript
+     * Get the 8 next tricks in the database and create a Twig file with them that will be displayed via Javascript
      * 
      * @Route("/{start}", name="loadMoreTricks", requirements={"start": "\d+"})
      */
     public function loadMoreTricks(ManagerRegistry $doctrine, $start = 8)
     {
-        // Get 4 tricks from the start position
+        // Get 8 tricks from the start position
         $repo = $doctrine->getRepository(Tricks::class);
         $tricks = $repo->findBy([], ['modifyAt' => 'DESC'], 8, $start);
 
         return $this->render('home/loadMoreTricks.html.twig', [
             'activee' => 'Tricks',
             'Tricks' => $tricks
+        ]);
+    }
+
+    /**
+     * Get the 4 next tricks in the database and create a Twig file with them that will be displayed via Javascript
+     * 
+     * @Route("/{start}", name="loadMoreComments", requirements={"start": "\d+"})
+     */
+    public function loadMoreComments(ManagerRegistry $doctrine, $start = 4)
+    {
+        // Get 8 tricks from the start position
+        $repo = $doctrine->getRepository(Comments::class);
+        $comment = $repo->findBy([], ['content' => 'DESC'], 4, $start);
+
+        return $this->render('home/loadMoreComments.html.twig', [
+            'activee' => 'Tricks',
+            'Tricks' => $comment
         ]);
     }
 
