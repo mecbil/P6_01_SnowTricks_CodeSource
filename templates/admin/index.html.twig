@@ -41,14 +41,16 @@
         </div>
         {# Tricks Collapse #}
         <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }}" id="tricks">
-            <div class="card card-body">
+            <div class="card card-body p-2">
                 {{ form_start(formTricks) }}
+                    Catégories:
+                    {{ form_row(formTricks.categories, {label: ' ' }) }}
                     <span id="tr"></span>{{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
                     {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
                     {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
                     <div class="hidden" style="display: none;">{{ form_row(formTricks.fitured_img, {attr: {'class': 'hidden-row'} }) }}</div>
-                    <input type="file" name="fitured_img" class="form-control-file">
-                    {{ form_row(formTricks.categories, {label: 'Catégories :' }) }}
+                    <input type="file" name="fitured_img" class="form-control-file mb-2">
+                    
                     <button type="submit" class="btn btn-success">Valider</button>
                 {{ form_end(formTricks) }}
             </div>
