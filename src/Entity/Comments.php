@@ -2,14 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
- * @UniqueEntity("content")
  */
 class Comments
 {
@@ -27,6 +24,7 @@ class Comments
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\Unique(message = "Cette valeur est déjà utilisée.")
      */
     private $author;
 

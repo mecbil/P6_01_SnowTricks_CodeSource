@@ -14,7 +14,6 @@ class VidsType extends AbstractType
         $builder
             ->add('label')
             ->add('link')
-            // ->add('tricks')
         ;
     }
 
