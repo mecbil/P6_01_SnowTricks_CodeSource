@@ -143,15 +143,14 @@
                         </div>
                     </div>
 				</div>
-				<div class='container col-lg-4 col-md-6'>
+				<div class='Comments container col-lg-4 col-md-6'>
 
-					{% for Comment in Tricks.tricks | slice(0,4) %}
+					{% for Comment in comments | slice(0,4) %}
 						<p class='commentaire'><i class="fas fa-user-circle" title="{{ Tricks.author }}"></i><span>{{ Comment.content }}</span></p>
 					{% endfor %}
-					<div class="text-center m-2">
-						<button id="loadMoreComments" class="btn btn-success px-4">Load more</button>
-					</div>
-
+				</div>
+				<div class="text-center m-2">
+					<button id="loadMoreComments" class="btn btn-success px-4">Load more</button>
 				</div>
 			</div>
 		</section>
@@ -165,10 +164,10 @@
         function loadMoreComments(event) {
             event.preventDefault();
             click++;
-            var start = 4 * click;
-            const url = "{{ path('loadMoreComments') }}" + start;
+            var begin = 4 * click;
+            const url = "{{ path('loadMoreComments', {'id': Tricks.id }) }}" + begin;
             axios.get(url).then(function(response) {
-                $(".tricks").append(response.data);
+                $(".Comments").append(response.data);
             }).catch(function (error) {
                 if (response.status === 403) {
                     window.alert("Vous n'êtes pas autorisé à effectuer cette action !");
