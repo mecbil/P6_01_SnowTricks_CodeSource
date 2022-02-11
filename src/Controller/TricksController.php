@@ -41,6 +41,7 @@ class TricksController extends AbstractController
         ]);
     }
 
+    
     /**
      * Get the 8 next tricks in the database and create a Twig file with them that will be displayed via Javascript
      * 
@@ -59,24 +60,25 @@ class TricksController extends AbstractController
     }
 
     /**
-     * Get the 4 next tricks in the database and create a Twig file with them that will be displayed via Javascript
+     * Get the 4 next comment in the database and create a Twig file with them that will be displayed via Javascript
      * 
-     * @Route("/{start}", name="loadMoreComments", requirements={"start": "\d+"})
+     * @Route("{id}/details{begin}", name="loadMoreComments", requirements={"begin": "\d+"})
      */
-    public function loadMoreComments(ManagerRegistry $doctrine, $start = 4)
+    public function loadMoreComments(Tricks $tricks, ManagerRegistry $doctrine, $begin = 4)
     {
-        // Get 8 tricks from the start position
+        // Get 4 comments from the begin position
         $repo = $doctrine->getRepository(Comments::class);
-        $comment = $repo->findBy([], ['content' => 'DESC'], 4, $start);
+        
+        $Comments = $repo->findBy(['tricks' => $tricks->getId()], ['created_at' => 'DESC'], 4, $begin);
 
         return $this->render('home/loadMoreComments.html.twig', [
             'activee' => 'Tricks',
-            'Tricks' => $comment
+            'Comments' => $Comments,
         ]);
     }
 
     /**
-     * @Route("/tricks/details/{id}", name="tricks_show")
+     * @Route("/tricks/{id}/details", name="tricks_show")
      */
     public function showOneTricks($id, Request $request,ManagerRegistry $doctrine): Response
     {
@@ -86,7 +88,7 @@ class TricksController extends AbstractController
             throw $this->createNotFoundException('Enregistrement non trouvé');
         }
         $repocomments = $doctrine->getRepository(Comments::class);
-        $comments = $repocomments->findAll();
+        $allcomments = $repocomments->findBy(['tricks' => $id], ['created_at' => 'DESC']);
 
         // Add picture
         $pictures = new Pictures();
@@ -118,8 +120,7 @@ class TricksController extends AbstractController
             return $this->redirectToRoute('tricks_show', [
                 'onglet' => $onglet,
                 'id' => $id,
-                'onglet' => '',
-                
+                'onglet' => '',               
             ]);
         }
 
@@ -184,6 +185,7 @@ class TricksController extends AbstractController
             'formvids' => $formvids->createView(),
             'formcomments' => $formcomments->createView(),
             'onglet' => '',
+            'comments' => $allcomments,
 
         ]);
     }

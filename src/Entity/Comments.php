@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CommentsRepository::class)
+ * @UniqueEntity("content")
  */
 class Comments
 {
@@ -38,13 +41,13 @@ class Comments
     private $modify_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=users::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity=tricks::class, inversedBy="tricks")
+     * @ORM\ManyToOne(targetEntity=Tricks::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tricks;
