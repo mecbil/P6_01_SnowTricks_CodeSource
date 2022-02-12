@@ -69,7 +69,7 @@
             <p> </p>
             <h2>Ajouter une catégorie</h2>
                 <div class='container  col-8'>
-                    {{ form_start(formCategorie) }}
+                    {{ form_start(formCategorie, {attr: {novalidate: 'novalidate'}}) }}
                         {# <div class="my-custom-class-for-errors"> {{ form_errors(formCategorie) }} </div> #}
                         {{ form_row(formCategorie.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
 
