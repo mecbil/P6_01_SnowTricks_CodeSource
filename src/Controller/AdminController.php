@@ -79,7 +79,7 @@ class AdminController extends AbstractController
                 $em->flush();
 
                 $onglet = 'categories';
-                return $this->redirectToRoute('admin', ['onglet' => $onglet]);
+                return $this->redirectToRoute('Admin', ['onglet' => $onglet]);
 
             }
 
