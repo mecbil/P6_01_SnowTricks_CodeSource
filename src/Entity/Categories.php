@@ -5,10 +5,11 @@ namespace App\Entity;
 use App\Repository\CategoriesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
- * @UniqueEntity("label")
+ * @UniqueEntity("label", message = "Cette catégorie est déjà utilisée.")
  */
 class Categories
 {
@@ -21,6 +22,7 @@ class Categories
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
      */
     private $label;
 
