@@ -105,8 +105,8 @@
 					</p>
 					{# Vids Collapse #}
 					<div class="collapse {{ (onglet)=='video' ? 'show' : '' }}" id="vids">
-						<div class="card card-body">
-                            {{ form_start(formvids) }}
+						<div class="card card-body col-8 mx-auto">
+                            {{ form_start(formvids, {attr: {novalidate: 'novalidate'}}) }}
                                 <span id="vd"></span> {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
 								{{ form_row(formvids.link, {attr: {'placeholder': 'Ex: https://www.youtube.com/watch?v=e5udJTjbYzw ...'} })  }}
 								{% if subvid %}
