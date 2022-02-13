@@ -95,13 +95,15 @@ class TricksController extends AbstractController
 
         $formpictures = $this->createForm(PicturesType::class, $pictures);
         $formpictures->handleRequest($request);
+        // $image = $formpictures->get('link');
+        // dump($image);
 
         if($formpictures->isSubmitted() && $formpictures->isValid()) {
 
             $pictures->setTricks($tricks);
 
             // Traitement de l'image
-            $file = $request->files->get('Imagetricks');
+            $file = $formpictures->get('link')->getData();
             $fichier = $file->getClientOriginalName();
 
             // moves the file to the directory where images are stored

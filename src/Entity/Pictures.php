@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PicturesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PicturesRepository::class)
@@ -19,11 +20,25 @@ class Pictures
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Votre Titre doit comporter au moins {{ limit }} caractères ",
+     * )
      */
     private $label;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Image(maxSize = "1024k",
+     *               mimeTypesMessage = "Ce fichier n'est pas une image valide.",
+     *               maxSizeMessage = "Votre fichier est trop gros. La taille maximum autorisée est : {{ limit }}"
+     * )
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     maxSizeMessage = "La taille maximum autorisée est : {{ limit }}",
+     * )
      */
     private $link;
 
