@@ -120,15 +120,9 @@
                     {# Images Collapse #}
                     <div class="collapse {{ (onglet)=='imgage' ? 'show' : '' }}" id="images">
                         <div class="card card-body">
-                            {{ form_start(formpictures) }}
-                                {# {% if form_errors(formPictures)|length > 0 %}
-                                    <div class="alert alert-danger">
-                                        {{ form_errors(formPictures) }}
-                                    </div>
-                                {% endif %} #}
-                               <span id="im"></span> {{ form_row(formpictures.label, {attr: {'placeholder': 'Titre ...'} }) }}
-                                <div class="hidden" style="display: none;">{{ form_row(formpictures.link, {attr: {'class': 'hidden-row'} }) }}</div>
-                                <p><input type="file" name="Imagetricks" class="form-control-file"></p>
+                            {{ form_start(formpictures, {attr: {novalidate: 'novalidate'}}) }}
+                                <span id="im"></span> {{ form_row(formpictures.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+                                {{ form_row(formpictures.link, {attr: {'name' : 'Imagetricks'} }) }}
                                 <button type="submit" class="btn btn-success">Ajouter cette image</button>
                             {{ form_end(formpictures) }}
                         </div>
