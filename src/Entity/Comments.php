@@ -20,6 +20,11 @@ class Comments
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre Commentaire doit comporter au moins {{ limit }} caractères ",
+     * )
      */
     private $content;
 

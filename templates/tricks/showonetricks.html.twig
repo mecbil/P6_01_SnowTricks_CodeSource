@@ -130,7 +130,7 @@
                     {# Categories Collapse #}
                     <div class="collapse " id="comments">
                         <div class="card card-body">
-                            {{ form_start(formcomments) }}
+                            {{ form_start(formcomments, {attr: {novalidate: 'novalidate'}}) }}
                                 {{ form_row(formcomments.content, {label: 'Contenu :', attr: {'placeholder': 'Votre commentaire ...'} }) }}
                                 <button type="submit" class="btn btn-success">Ajouter</button>
                             {{ form_end(formcomments) }}
