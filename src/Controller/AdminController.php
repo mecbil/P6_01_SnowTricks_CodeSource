@@ -36,10 +36,10 @@ class AdminController extends AbstractController
 
             if($formtricks->isSubmitted() && $formtricks->isValid()) {
 
-                if ($request->files->get('fitured_img')) {
+                if ($request->files->get('tricks')) {
 
                     // Traitement de l'image
-                    $file = $request->files->get('fitured_img');
+                    $file = $formtricks->get('fitured_img')->getData();
                     $fichier = $file->getClientOriginalName();
     
                     // moves the file to the directory where images are stored
@@ -56,6 +56,7 @@ class AdminController extends AbstractController
                 $em = $doctrine->getManager();
                 $em->persist($tricks);
                 $em->flush();
+
 
                 return $this->redirectToRoute('tricks_show', [
                     'onglet' => 'profil',

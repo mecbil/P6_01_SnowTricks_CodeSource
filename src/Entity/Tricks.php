@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TricksRepository::class)
- * @UniqueEntity("title")
+ * @UniqueEntity("title", message = "Ce Titre est déjà utilisé..")
  */
 class Tricks
 {
@@ -23,6 +24,11 @@ class Tricks
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Votre Titre doit comporter au moins {{ limit }} caractères ",
+     * )
      */
     private $title;
 
@@ -33,6 +39,11 @@ class Tricks
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre Titre doit comporter au moins {{ limit }} caractères ",
+     * )
      */
     private $content;
 
@@ -48,6 +59,10 @@ class Tricks
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Image(maxSize = "2M", 
+     *              uploadIniSizeErrorMessage = "Fichier trop volumineux. La taille maximum autorisée est de : {{ limit }}M",
+     *              mimeTypesMessage = "Ce fichier n'est pas une image valide.")
      */
     private $fitured_img;
 
@@ -60,6 +75,7 @@ class Tricks
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
      */
     private $categories;
 
