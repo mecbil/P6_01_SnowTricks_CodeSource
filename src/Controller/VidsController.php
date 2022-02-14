@@ -45,6 +45,8 @@ class VidsController extends AbstractController
         $idtricks = $video->getTricks();
         $repotricks = $doctrine->getRepository(Tricks::class);
         $tricks = $repotricks->find($idtricks);
+        $repocomments = $doctrine->getRepository(Comments::class);
+        $allcomments = $repocomments->findBy(['tricks' => $idtricks], ['created_at' => 'DESC']);
 
         $formvids = $this->createForm(VidsType::class, $video);
 
@@ -78,6 +80,7 @@ class VidsController extends AbstractController
             'formpictures' => $formpicture->createView(),
             'formvids' => $formvids->createView(),
             'formcomments' => $formcomments->createView(),
+            'comments' => $allcomments,
         ]);
     }
 }
