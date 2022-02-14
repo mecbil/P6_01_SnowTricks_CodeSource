@@ -45,11 +45,12 @@ class VidsController extends AbstractController
         $idtricks = $video->getTricks();
         $repotricks = $doctrine->getRepository(Tricks::class);
         $tricks = $repotricks->find($idtricks);
+
         $repocomments = $doctrine->getRepository(Comments::class);
         $allcomments = $repocomments->findBy(['tricks' => $idtricks], ['created_at' => 'DESC']);
 
         $formvids = $this->createForm(VidsType::class, $video);
-
+        dump($formvids);
         $formvids->handleRequest($request);
 
         if ($formvids->isSubmitted() && $formvids->isValid()) {
@@ -74,6 +75,7 @@ class VidsController extends AbstractController
         return $this->render('tricks/showonetricks.html.twig', [
             'onglet' => 'video',
             'subvid' => $video->getId() !== null,
+            'subim' => $picture->getId() !== null,
             'id' => ($video->getTricks())->getId(),
             'activee' => 'Connexion',
             'Tricks' => $tricks,

@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Pictures;
 use App\Form\PicturesType;
-use App\Entity\Tricks;
 use App\Entity\Vids;
 use App\Form\VidsType;
 use App\Entity\Comments;
 use App\Form\CommentsType;
+use App\Entity\Tricks;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,18 +39,23 @@ class PicturesController extends AbstractController
      */
     public function edit(Pictures $picture, Request $request, ManagerRegistry $doctrine): Response
     {
+        
         $idtricks = $picture->getTricks();
         $repotricks = $doctrine->getRepository(Tricks::class);
         $tricks = $repotricks->find($idtricks);
 
+        $repocomments = $doctrine->getRepository(Comments::class);
+        $allcomments = $repocomments->findBy(['tricks' => $idtricks], ['created_at' => 'DESC']);
+        
         $formpicture = $this->createForm(PicturesType::class, $picture);
 
         $formpicture->handleRequest($request);
-
+        dump($formpicture->get('link')->getData());
         if ($formpicture->isSubmitted() && $formpicture->isValid()) {
-            if ($request->files->get('Imagetricks')) {
+            
+            if ($formpicture->get('link')->getData()) {
                 // Traitement de l'image
-                $file = $request->files->get('Imagetricks');
+                $file = $request->files->get('link');
                 $fichier = $file->getClientOriginalName();
 
                 // moves the file to the directory where images are stored
@@ -79,12 +84,15 @@ class PicturesController extends AbstractController
 
         return $this->render('tricks/showonetricks.html.twig', [
             'onglet' => 'imgage',
+            'subvid' => $vids->getId() !== null,
+            'subim' => $picture->getId() !== null,
             'id' => ($picture->getTricks())->getId(),
             'activee' => 'Connexion',
             'Tricks' => $tricks,
             'formpictures' => $formpicture->createView(),
             'formvids' => $formvids->createView(),
             'formcomments' => $formcomments->createView(),
+            'comments' => $allcomments,
         ]);
     }
 }

@@ -14,7 +14,7 @@ class PicturesType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('link', FileType::class)
+            ->add('link', FileType::class, array('data_class' => null))
         ;
     }
 
