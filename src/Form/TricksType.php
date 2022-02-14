@@ -17,7 +17,7 @@ class TricksType extends AbstractType
             ->add('title')
             ->add('author', HiddenType::class)
             ->add('content')
-            ->add('fitured_img', fileType::class)
+            ->add('fitured_img', fileType::class, array('data_class' => null))
             ->add('categories')
         ;
     }

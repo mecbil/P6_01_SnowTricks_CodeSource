@@ -182,6 +182,7 @@ class TricksController extends AbstractController
             'controller_name' => 'TricksController',
             'activee' => 'Tricks',
             'subvid' => $vids->getId() !== null,
+            'subim' => $pictures->getId() !== null,
             'Tricks' => $tricks,
             'formpictures' => $formpictures->createView(),
             'formvids' => $formvids->createView(),
@@ -204,10 +205,10 @@ class TricksController extends AbstractController
         $em->remove($trick);
         $em->flush();
 
-        $tricks = $repotrick->findAll();
+        $tricks = $repotrick->findBy([], ['modifyAt' => 'DESC']);
 
-        return $this->render('tricks/showtricks.html.twig', [
-            'activee' => 'Tricks',
+        return $this->render('home/index.html.twig', [
+            'activee' => 'Home',
             'Tricks' => $tricks,
         ]);
 

@@ -31,13 +31,9 @@ class Pictures
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
-     * @Assert\Image(maxSize = "1024k",
-     *               mimeTypesMessage = "Ce fichier n'est pas une image valide.",
-     *               maxSizeMessage = "Votre fichier est trop gros. La taille maximum autorisée est : {{ limit }}"
-     * )
-     * @Assert\File(
-     *     maxSize = "1M",
-     *     maxSizeMessage = "La taille maximum autorisée est : {{ limit }}",
+     * @Assert\Image(maxSize = "2M", 
+     *              uploadIniSizeErrorMessage = "Fichier trop volumineux. La taille maximum autorisée est de : {{ limit }}M",
+     *              mimeTypesMessage = "Ce fichier n'est pas une image valide.")
      * )
      */
     private $link;
