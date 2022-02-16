@@ -46,26 +46,25 @@ class PicturesController extends AbstractController
 
         $repocomments = $doctrine->getRepository(Comments::class);
         $allcomments = $repocomments->findBy(['tricks' => $idtricks], ['created_at' => 'DESC']);
-        
+               
         $formpicture = $this->createForm(PicturesType::class, $picture);
 
         $formpicture->handleRequest($request);
-        dump($formpicture->get('link')->getData());
+
         if ($formpicture->isSubmitted() && $formpicture->isValid()) {
-            
-            if ($formpicture->get('link')->getData()) {
-                // Traitement de l'image
-                $file = $request->files->get('link');
-                $fichier = $file->getClientOriginalName();
 
-                // moves the file to the directory where images are stored
-                $file->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
+            // Traitement de l'image
+            $file = $formpicture->get('link')->getData();
 
-                $picture->setLink($fichier);
-            }
+            $fichier = $file->getClientOriginalName();
+
+            // moves the file to the directory where images are stored
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fichier
+            );
+
+            $picture->setLink($fichier);
             
             $em = $doctrine->getManager();
             $em->flush();

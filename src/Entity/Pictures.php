@@ -30,8 +30,8 @@ class Pictures
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
-     * @Assert\Image(maxSize = "2M", 
+     * @Assert\NotNull(message = "Veuillez compléter ce champ.")
+     * @Assert\Image(maxSize = "2M",
      *              uploadIniSizeErrorMessage = "Fichier trop volumineux. La taille maximum autorisée est de : {{ limit }}M",
      *              mimeTypesMessage = "Ce fichier n'est pas une image valide.")
      * )
@@ -54,7 +54,7 @@ class Pictures
         return $this->label;
     }
 
-    public function setLabel(string $label): self
+    public function setLabel(?string $label): self
     {
         $this->label = $label;
 
@@ -66,7 +66,7 @@ class Pictures
         return $this->link;
     }
 
-    public function setLink(string $link): self
+    public function setLink(?string $link): self
     {
         $this->link = $link;
 

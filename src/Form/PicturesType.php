@@ -14,7 +14,13 @@ class PicturesType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('link', FileType::class, array('data_class' => null))
+            ->add('link', FileType::class, [
+                'data_class' => null,
+                // 'filename' => 'formpictures.link.vars.data',
+                // 'mapped' => false,
+                'required' => false,
+
+            ])
         ;
     }
 
