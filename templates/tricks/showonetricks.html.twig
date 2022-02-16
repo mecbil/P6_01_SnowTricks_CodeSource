@@ -18,17 +18,18 @@
 				<picture class="trickspic container-fluid">
 
 					{# <p> #}
-						<img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-fluid" alt="{{ Tricks.title }}">
-						{% if app.user %}
-							<div class="lesfas img-fluid">
-								<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
-									<i class="fas fa-pencil-alt"></i>
-								</a>
-								<a href="{{ path('trick_delete',{'id': Trick.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
-									<i class="fas fa-trash-alt text-danger"></i>
-								</a>
-							</div>
-						{% endif %}					
+					<img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-fluid" alt="{{ Tricks.title }}">
+					
+					{% if app.user %}
+						<div class="lesfas img-fluid">
+							<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
+								<i class="fas fa-pencil-alt"></i>
+							</a>
+							<a href="{{ path('trick_delete',{'id': Tricks.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+								<i class="fas fa-trash-alt text-danger"></i>
+							</a>
+						</div>
+					{% endif %}					
 					{# </p> #}
 				</picture>
                 {# Affichage des Images et Video #}
@@ -118,11 +119,17 @@
                         <div class="card card-body">
                             {{ form_start(formpictures, {attr: {novalidate: 'novalidate'}}) }}
                                 <span id="im"></span> {{ form_row(formpictures.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
-                                {{ form_row(formpictures.link, {attr: {'name' : 'Imagetricks'} }) }}
-								{% if subim %}
-									<button type="submit" class="btn btn-success m-2">Modifier cette image</button><a class="btn btn-danger" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+                                {% if (formpictures.link.vars.data) %}
+									Old Image : {{ formpictures.link.vars.data }}
+									{{ form_row(formpictures.link, {label: 'Image :'} ) }}
 								{% else %}
-										<button type="submit" class="btn btn-success">Ajouter cette image</button>
+									{{ form_row(formpictures.link, {label: 'Image :'} ) }}
+								{% endif %}
+
+								{% if subim %}
+									<button type="submit" class="btn btn-success ">Modifier cette image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+								{% else %}
+										<button type="submit" class="btn btn-success ">Ajouter une image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
 								{% endif %}	
                             {{ form_end(formpictures) }}
                         </div>

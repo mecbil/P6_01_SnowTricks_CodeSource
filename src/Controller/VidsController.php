@@ -50,7 +50,7 @@ class VidsController extends AbstractController
         $allcomments = $repocomments->findBy(['tricks' => $idtricks], ['created_at' => 'DESC']);
 
         $formvids = $this->createForm(VidsType::class, $video);
-        dump($formvids);
+
         $formvids->handleRequest($request);
 
         if ($formvids->isSubmitted() && $formvids->isValid()) {

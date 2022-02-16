@@ -98,7 +98,7 @@ class TricksController extends AbstractController
         // $image = $formpictures->get('link');
         // dump($image);
 
-        if($formpictures->isSubmitted() && $formpictures->isValid()) {
+        if($formpictures->isSubmitted() && $formpictures->isValid() ) {
 
             $pictures->setTricks($tricks);
 
