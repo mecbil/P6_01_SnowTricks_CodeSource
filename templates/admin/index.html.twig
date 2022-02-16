@@ -24,39 +24,35 @@
 
         </p>
         {# Profile Collapse #}
-        <div class="collapse {{ (onglet)=='profil' ? 'show' : '' }}" id="profil">
+        <div class="collapse {{ (onglet)=='profil' ? 'show' : '' }} col-6 mx-auto" id="profil">
             <div class="card card-body">
                 <section >
-                    <article>
-                        <img src="{{ asset('images/im.png') }}">
-                    </article>
                     <article>
                                 <h4><span><small>Nom : </small>{{ app.user.lastname }}</h4>
                                 <p>Pseudo : {{ app.user.nickname }}</p>
                                 <p>Mail : {{ app.user.email }}</p>
-                                <a href="#" class="btn btn-success">Modifiers les infos</a>
+                                {# <a href="#" class="btn btn-success">Modifiers les infos</a> #}
                     </article>
                 </section>
             </div>
         </div>
         {# Tricks Collapse #}
-        <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }}" id="tricks">
+        <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }} col-9 mx-auto" id="tricks">
             <div class="card card-body p-2">
                 {{ form_start(formTricks, {attr: {novalidate: 'novalidate'}}) }}
-                    Catégories:
-                    {{ form_row(formTricks.categories, {label: ' ' }) }}
+                    
+                    {{ form_row(formTricks.categories, {label: 'Catégories : '}) }}
                     <span id="tr"></span>{{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
                     {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
                     {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
-                    {{ form_row(formTricks.fitured_img, {attr: {'name' : 'fitured_img'} }) }}
-                    {# <input type="file" name="fitured_img" class="form-control-file mb-2"> #}
+                    {{ form_row(formTricks.fitured_img, {label: 'Image mise en avant: ', attr: {'name' : 'fitured_img'} }) }}
                     
-                    <button type="submit" class="btn btn-success">Valider</button>
+                    <button type="submit" class="btn btn-success">Valider</button><a class="btn btn-danger mx-2" href="{{ path('Admin') }}">Annulez</a>
                 {{ form_end(formTricks) }}
             </div>
         </div>
         {# Categories Collapse #}
-        <div class="collapse {{ (onglet)=='categories' ? 'show' : '' }}" id="categories">
+        <div class="collapse {{ (onglet)=='categories' ? 'show' : '' }} col-8 mx-auto" id="categories">
 
             <div class="card card-body ">
             <h2>Liste des Catégories</h2>
