@@ -41,7 +41,7 @@ class Tricks
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
      * @Assert\Length(
-     *      min = 10,
+     *      min = 40,
      *      minMessage = "Votre Titre doit comporter au moins {{ limit }} caractères ",
      * )
      */

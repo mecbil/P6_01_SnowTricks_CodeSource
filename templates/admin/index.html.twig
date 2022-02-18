@@ -45,7 +45,13 @@
                     <span id="tr"></span>{{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
                     {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
                     {{ form_row(formTricks.content, {label: 'Déscription :', attr: {'placeholder': 'Déscription ...'} }) }}
-                    {{ form_row(formTricks.fitured_img, {label: 'Image mise en avant: ', attr: {'name' : 'fitured_img'} }) }}
+                    {% if (formTricks.fitured_img.vars.data) %}
+                        Old Image : {{ formTricks.fitured_img.vars.data }}
+                        {{ form_row(formTricks.fitured_img, {label: 'Image mise en avant: ', attr: {'name' : 'fitured_img'} } ) }}
+                    {% else %}
+                        {{ form_row(formTricks.fitured_img, {label: 'Image mise en avant: ', attr: {'name' : 'fitured_img'} }) }}
+                    {% endif %}
+                    
                     
                     <button type="submit" class="btn btn-success">Valider</button><a class="btn btn-danger mx-2" href="{{ path('Admin') }}">Annulez</a>
                 {{ form_end(formTricks) }}
