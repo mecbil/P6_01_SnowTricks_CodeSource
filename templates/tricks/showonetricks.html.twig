@@ -6,156 +6,163 @@
 
 {% block body %}
 
-	<div class="Container">
+<div class="Container">
 
-		{% for message in app.flashes('success') %}
-			<div class="alert alert-danger" role="alert">{{ message }}</div>
-		{% endfor %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-danger" role="alert">{{ message }}</div>
+	{% endfor %}
 
-		<section class="">
-			<div class="container-fluid">
+	<section class="">
+		<div class="">
+			<div class="trickspic">
+				
+				<img src="{{ asset('/images/'~Tricks.FituredImg) }}" alt="{{ Tricks.title }}">
+				
+				{% if app.user %}
+					{# <div class="lesfas img-fluid"> #}
+						<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
+							<i class="fas fa-pencil-alt"></i>
+						</a>
+						<a href="{{ path('trick_delete',{'id': Tricks.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
+							<i class="fas fa-trash-alt text-danger mx-4"></i>
+						</a>
+					{# </div> #}
+				{% endif %}					
 
-				<picture class="trickspic container-fluid">
-
-					{# <p> #}
-					<img src="{{ asset('/images/'~Tricks.FituredImg) }}" class="img-fluid" alt="{{ Tricks.title }}">
-					
-					{% if app.user %}
-						<div class="lesfas img-fluid">
-							<a href="{{ path('tricks_edit', {'id': Tricks.id }) }}#tr">
-								<i class="fas fa-pencil-alt"></i>
-							</a>
-							<a href="{{ path('trick_delete',{'id': Tricks.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ Tricks.title }} ?`)">
-								<i class="fas fa-trash-alt text-danger"></i>
-							</a>
-						</div>
-					{% endif %}					
-					{# </p> #}
-				</picture>
-                {# Affichage des Images et Video #}
-				<div class="imgvids">
-					<div class=" col-6 m-2">
-						<div class="owl-carousel owl-theme">
-							{% for image in Tricks.pictures %}
-								<div class="card border-0 shadow">
-									<img src="{{ asset('images/'~image.link) }}" alt="" class="">
-									<div class="card-body">
-										<div class="card-title text-center">
-											{% if app.user %}
-												<div class="">
-													<a  href="{{ path('pictures_edit', {'id': image.id }) }}#im" >
-														<i class="fas fa-pencil-alt " ></i>
-													</a>
-													<a href="{{ path('pictures_delete', {'id': image.id }) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
-														<i class="fas fa-trash-alt text-danger m-2"></i>
-													</a>
-												</div>
-											{% endif %}
-										</div>
+			</div>
+			{# Affichage des Images et Video #}
+			<div class="imgvids">
+				<div class=" col-6 mt-4 mb-4">
+					<div class="owl-carousel owl-theme">
+						{% for image in Tricks.pictures %}
+							<div class="card border-0 shadow">
+								<img src="{{ asset('images/'~image.link) }}" alt="" class="">
+								<div class="card-body">
+									<div class="card-title text-center">
+										{% if app.user %}
+											<div class="">
+												<a  href="{{ path('pictures_edit', {'id': image.id }) }}#im" >
+													<i class="fas fa-pencil-alt " ></i>
+												</a>
+												<a href="{{ path('pictures_delete', {'id': image.id }) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer l'image : {{ image.label }} ?`)">
+													<i class="fas fa-trash-alt text-danger m-2"></i>
+												</a>
+											</div>
+										{% endif %}
 									</div>
 								</div>
+							</div>
 
-							{% endfor %}
-						</div>
+						{% endfor %}
 					</div>
-					<div class=" col-6 m-2">
-						<div class="owl-carousel owl-theme">
-							{% for video in Tricks.vids %}
-								<div class="card border-0 shadow">
-									<iframe  src="{{ video.link }}" ></iframe>
-									<div class="card-body">
-										<div class="card-title text-center">
-											{% if app.user %}
-												<div class="">
-													<a href="{{ path('vids_edit', {'id': video.id }) }}#vd">
-														<i class="fas fa-pencil-alt"></i>
-													</a>
-													<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
-														<i class="fas fa-trash-alt text-danger m-2"></i>
-													</a>
-												</div>
-											{% endif %}
-										</div>
+				</div>
+				<div class=" col-6 mt-4">
+					<div class="owl-carousel owl-theme">
+						{% for video in Tricks.vids %}
+							<div class="card border-0 shadow">
+								<iframe  src="{{ video.link }}" ></iframe>
+								<div class="card-body">
+									<div class="card-title text-center">
+										{% if app.user %}
+											<div class="">
+												<a href="{{ path('vids_edit', {'id': video.id }) }}#vd">
+													<i class="fas fa-pencil-alt"></i>
+												</a>
+												<a href="{{ path('vids_delete', {'id': video.id}) }}" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer le trick : {{ video.label }} ?`)">
+													<i class="fas fa-trash-alt text-danger m-2"></i>
+												</a>
+											</div>
+										{% endif %}
 									</div>
 								</div>
-							{% endfor %}
-						</div>
+							</div>
+						{% endfor %}
 					</div>
-				</div>
-
-                {# Ajout des Images, Video et commentaires #}
-				<div class='container'>
-					<p class='text-center'>
-                        {% if app.user %}	
-                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#images" aria-expanded="false" aria-controls="images">
-                                Ajouter une Image
-                            </button>
-                            <button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#vids" aria-expanded="false" aria-controls="vids">
-                                Ajouter une Video
-                            </button>
-                        
-                            <button class="btn btn-warning m-1" role="button" data-bs-toggle="collapse" href="#comments" aria-expanded="false" aria-controls="comments">
-                                Ajouter un Commentaire
-                            </button>
-						{% endif %}
-
-					</p>
-					{# Vids Collapse #}
-					<div class="collapse {{ (onglet)=='video' ? 'show' : '' }}" id="vids">
-						<div class="card card-body col-8 mx-auto">
-                            {{ form_start(formvids, {attr: {novalidate: 'novalidate'}}) }}
-                                <span id="vd"></span> {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
-								{{ form_row(formvids.link, {attr: {'placeholder': 'Ex: https://www.youtube.com/watch?v=e5udJTjbYzw ...'} })  }}
-								{% if subvid %}
-									<button type="submit" class="btn btn-success m-2">Modifier la Video</button><a class="btn btn-danger" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
-								{% else %}
-										<button type="submit" class="btn btn-success">Ajouter une Video</button>
-								{% endif %}								
-                            {{ form_end(formvids) }}
-						</div> 
-                    </div>
-                    {# Images Collapse #}
-                    <div class="collapse {{ (onglet)=='imgage' ? 'show' : '' }}" id="images">
-                        <div class="card card-body">
-                            {{ form_start(formpictures, {attr: {novalidate: 'novalidate'}}) }}
-                                <span id="im"></span> {{ form_row(formpictures.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
-                                {% if (formpictures.link.vars.data) %}
-									Old Image : {{ formpictures.link.vars.data }}
-									{{ form_row(formpictures.link, {label: 'Image :'} ) }}
-								{% else %}
-									{{ form_row(formpictures.link, {label: 'Image :'} ) }}
-								{% endif %}
-
-								{% if subim %}
-									<button type="submit" class="btn btn-success ">Modifier cette image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
-								{% else %}
-										<button type="submit" class="btn btn-success ">Ajouter une image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
-								{% endif %}	
-                            {{ form_end(formpictures) }}
-                        </div>
-                    </div>
-                    {# Categories Collapse #}
-                    <div class="collapse " id="comments">
-                        <div class="card card-body">
-                            {{ form_start(formcomments, {attr: {novalidate: 'novalidate'}}) }}
-                                {{ form_row(formcomments.content, {label: 'Contenu :', attr: {'placeholder': 'Votre commentaire ...'} }) }}
-                                <button type="submit" class="btn btn-success">Ajouter</button>
-                            {{ form_end(formcomments) }}
-                        </div>
-                    </div>
-				</div>
-				<div class='Comments container col-lg-4 col-md-6'>
-
-					{% for Comment in comments | slice(0,4) %}
-						<p class='commentaire'><i class="fas fa-user-circle" title="{{ Tricks.author }}"></i><span>{{ Comment.content }}</span></p>
-					{% endfor %}
-				</div>
-				<div class="text-center m-2">
-					<button id="loadMoreComments" class="btn btn-success px-4">Load more</button>
 				</div>
 			</div>
-		</section>
-	</div>
+			<p class="text-center">{{ Tricks.content }}</p>
+			<div class="container text-center">
+			
+				<button class="btn btn-success m-1">Créer le :{{ Tricks.createdAt | date('d/m/y') }} à {{ Tricks.createdAt | date('H:i') }}</button>
+				<button class="btn btn-success m-1">{{ Tricks.categories }}</button>
+				<button class="btn btn-success m-1">Modifié le :{{ Tricks.modifyAt | date('d/m/y') }} à {{ Tricks.modifyAt | date('H:i') }}</button>
+				
+			</div>
+
+			{# Ajout des Images, Video et commentaires #}
+			<div class='container'>
+				<p class='text-center'>
+					{% if app.user %}	
+						<button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#images" aria-expanded="false" aria-controls="images">
+							Ajouter une Image
+						</button>
+						<button class="btn btn-warning m-1" type="button" data-bs-toggle="collapse" data-bs-target="#vids" aria-expanded="false" aria-controls="vids">
+							Ajouter une Video
+						</button>
+					
+						<button class="btn btn-warning m-1" role="button" data-bs-toggle="collapse" href="#comments" aria-expanded="false" aria-controls="comments">
+							Ajouter un Commentaire
+						</button>
+					{% endif %}
+
+				</p>
+				{# Vids Collapse #}
+				<div class="collapse {{ (onglet)=='video' ? 'show' : '' }}" id="vids">
+					<div class="card card-body col-8 mx-auto">
+						{{ form_start(formvids, {attr: {novalidate: 'novalidate'}}) }}
+							<span id="vd"></span> {{ form_row(formvids.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+							{{ form_row(formvids.link, {attr: {'placeholder': 'Ex: https://www.youtube.com/watch?v=e5udJTjbYzw ...'} })  }}
+							{% if subvid %}
+								<button type="submit" class="btn btn-success m-2">Modifier la Video</button><a class="btn btn-danger" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+							{% else %}
+									<button type="submit" class="btn btn-success">Ajouter une Video</button>
+							{% endif %}								
+						{{ form_end(formvids) }}
+					</div> 
+				</div>
+				{# Images Collapse #}
+				<div class="collapse {{ (onglet)=='imgage' ? 'show' : '' }}" id="images">
+					<div class="card card-body">
+						{{ form_start(formpictures, {attr: {novalidate: 'novalidate'}}) }}
+							<span id="im"></span> {{ form_row(formpictures.label, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
+							{% if (formpictures.link.vars.data) %}
+								Old Image : {{ formpictures.link.vars.data }}
+								{{ form_row(formpictures.link, {label: 'Image :'} ) }}
+							{% else %}
+								{{ form_row(formpictures.link, {label: 'Image :'} ) }}
+							{% endif %}
+
+							{% if subim %}
+								<button type="submit" class="btn btn-success ">Modifier cette image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+							{% else %}
+									<button type="submit" class="btn btn-success ">Ajouter une image</button><a class="btn btn-danger mx-2" href="{{ path('tricks_show', {'id': Tricks.id }) }}">Annulez</a>
+							{% endif %}	
+						{{ form_end(formpictures) }}
+					</div>
+				</div>
+				{# Categories Collapse #}
+				<div class="collapse " id="comments">
+					<div class="card card-body">
+						{{ form_start(formcomments, {attr: {novalidate: 'novalidate'}}) }}
+							{{ form_row(formcomments.content, {label: 'Contenu :', attr: {'placeholder': 'Votre commentaire ...'} }) }}
+							<button type="submit" class="btn btn-success">Ajouter</button>
+						{{ form_end(formcomments) }}
+					</div>
+				</div>
+			</div>
+			<div class='Comments container col-lg-4 col-md-6'>
+
+				{% for Comment in comments | slice(0,4) %}
+					<p class='commentaire'><i class="fas fa-user-circle" title="{{ Tricks.author }}"></i><span>{{ Comment.content }}</span></p>
+				{% endfor %}
+			</div>
+			<div class="text-center m-2">
+				<button id="loadMoreComments" class="btn btn-success px-4">Load more</button>
+			</div>
+		</div>
+	</section>
+</div>
+
 {% endblock %}
 {% block javascripts %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

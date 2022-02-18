@@ -26,9 +26,9 @@ class TricksController extends AbstractController
         // Pagination
         $limit = 8;
         $page = (int)$request->query->get('page', 1);
-        $total =$repotricks->findAll();
+        $total =$repotricks->findBy([], ['modifyAt' => 'DESC']);
         
-        $tricks = $repotricks->findBy([], ['modifyAt' => 'ASC'], $limit,$page*$limit-$limit);
+        $tricks = $repotricks->findBy([], ['modifyAt' => 'DESC'], $limit,$page*$limit-$limit);
 
 
         return $this->render('tricks/showtricks.html.twig', [
