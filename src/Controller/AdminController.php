@@ -97,5 +97,14 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
     }
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function mentions(): Response
+    {
+        return $this->render('admin/mentions_legales.htmt.twig', [
+            'activee' => 'Admin',
+        ]);
+    }
      
 }
