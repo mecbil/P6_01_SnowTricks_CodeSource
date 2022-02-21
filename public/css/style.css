@@ -1,5 +1,5 @@
 * {
-  font-family: 'Poppins', sans-serif;  
+  font-family: 'Poppins', sans-serif;
 }
 
 img {
@@ -143,25 +143,22 @@ iframe {
 
   .trickspic .fas { 
     left: 88%;
-    top: 14%; 
+    top: 14%;
   }
-
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
 
   .trickspic .fas { 
     left: 92%;
-    top: 14%; 
+    top: 14%;
   }
-
 }
 
 @media only screen and (min-width: 769px) and (max-width: 992px) {
 
   .trickspic .fas { 
     left: 94%;
-    top: 14%; 
+    top: 14%;
   }
-  
 }
