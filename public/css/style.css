@@ -87,9 +87,9 @@ iframe {
   justify-content: center;
 }
 
-.fa-chevron-down  {
+.fa-chevron-down {
   position: absolute;
-  top : 88%;
+  top: 88%;
   left: 90%;
   z-index: 10;
 }
@@ -104,9 +104,10 @@ iframe {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 6px 0px;
- 
-}.infostricks li {
+  margin: 6px 0;
+}
+
+.infostricks li {
   list-style: none;
   padding: 4px 10px;
   border: 5px solid white;
@@ -139,22 +140,28 @@ iframe {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 576px) {
+
   .trickspic .fas { 
     left: 88%;
     top: 14%; 
   }
+
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
+
   .trickspic .fas { 
     left: 92%;
     top: 14%; 
   }
+
 }
 
 @media only screen and (min-width: 769px) and (max-width: 992px) {
+
   .trickspic .fas { 
     left: 94%;
     top: 14%; 
   }
+  
 }
