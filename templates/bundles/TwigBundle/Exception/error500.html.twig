@@ -1,22 +1,9 @@
-{# {% extends "base.html.twig" %} #}
-{# {% block title %}Page non trouvée{% endblock %}
-
-{% block body %}
-    <div class="col-6 mx-auto">
-    <h1 class="m-2">Page non trouvées </h1>
-    <p>Code de la l'erreur : {{ status_code}}</p>
-    <p>Message erreur : {{ status_text}}</p>
-    <p>Message  : {{ exception.message }}</p>
-
-    <img  src="{{ asset('images/frontflip-1.jpg') }}" class="carouselimg" alt="Image d'erreur">
-    </div>
-{% endblock %} #}
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Erreur interne du serveur</title>
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {# <link href="{{ asset('css/style.css') }}" rel="stylesheet"> #}
     <link href="https://bootswatch.com/4/darkly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous"/>

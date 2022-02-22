@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cet email ")
  */
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -26,6 +26,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Email(
+     *     message = "L'e-mail {{ value }} n'est pas un e-mail valide. "
+     * )
      */
     private $email;
 
@@ -35,18 +39,38 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = ['ROLE_USER'];
 
     /**
-     * @var string The hashed password
+  
      * @ORM\Column(type="string")
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[a-z])(?=.*\d).{8,}$/i",
+     *     message="Votre nom ne peut pas contenir de chiffre"
+     * )
+     * @var string The hashed password
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Votre Nom doit comporter au moins {{ limit }} caractères ",
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne peut pas contenir de chiffre"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\NotBlank(message = "Veuillez compléter ce champ.")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Votre Titre doit comporter au moins {{ limit }} caractères ",
+     * )
      */
     private $nickname;
 

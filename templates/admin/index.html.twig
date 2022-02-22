@@ -31,7 +31,7 @@
                                 <h4><span><small>Nom : </small>{{ app.user.lastname }}</h4>
                                 <p>Pseudo : {{ app.user.nickname }}</p>
                                 <p>Mail : {{ app.user.email }}</p>
-                                {# <a href="#" class="btn btn-success">Modifiers les infos</a> #}
+                                <P><a href="{{ path('app_forgot_password_request') }}">Réinitialisez le Mot de passe</a></p>
                     </article>
                 </section>
             </div>
@@ -39,8 +39,7 @@
         {# Tricks Collapse #}
         <div class="collapse {{ (onglet)=='tricks' ? 'show' : '' }} col-9 mx-auto" id="tricks">
             <div class="card card-body p-2">
-                {{ form_start(formTricks, {attr: {novalidate: 'novalidate'}}) }}
-                    
+                {{ form_start(formTricks, {attr: {novalidate: 'novalidate'}}) }}                   
                     {{ form_row(formTricks.categories, {label: 'Catégories : '}) }}
                     <span id="tr"></span>{{ form_row(formTricks.title, {label: 'Titre :', attr: {'placeholder': 'Titre ...'} }) }}
                     {{ form_row(formTricks.author, {label: 'Auteur :', attr: {value: app.user.nickname } }) }}
@@ -72,14 +71,12 @@
             <h2>Ajouter une catégorie</h2>
                 <div class='container  col-8'>
                     {{ form_start(formCategorie, {attr: {novalidate: 'novalidate'}}) }}
-                        {# <div class="my-custom-class-for-errors"> {{ form_errors(formCategorie) }} </div> #}
                         {{ form_row(formCategorie.label, {label: 'Libéllé :', attr: {'placeholder': 'Libéllé ...'} }) }}
 
                         <button type="submit" class="btn btn-success">Valider</button>
                     {{ form_end(formCategorie) }}
                 </div>
             </div>
-
         </div>
     </div>
 
