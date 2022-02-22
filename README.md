@@ -4,6 +4,15 @@ Code source du Projet 6 de la formation Développeur d'application - PHP / Symfo
 
 <a href="https://codeclimate.com/github/mecbil/SnowTricks/maintainability"><img src="https://api.codeclimate.com/v1/badges/8203585276a0769a9d2b/maintainability" /></a>
 
+Environnement
+
+    PHP 7.3
+    Architecture MVC
+    Programmation Orientée Objet
+    Bootstrap 5
+    MySQL
+    jQuery
+
 Installation :
 
 Pour utiliser ce Site, il faut suivre les étapes suivantes :
@@ -35,7 +44,8 @@ Pour utiliser ce Site, il faut suivre les étapes suivantes :
     Créer une base de données nomée "snowtricks" et importer le fichier snowtricks.sql 
     situé à la racine du projet 
 
-    Entrez vos informations d'identification de connexion à la base de données dans le fichier .env situé à la racine du projet
+    Entrez vos informations d'identification de connexion à la base de données dans le fichier .env 
+    situé à la racine du projet
 
          Remplacez la ligne 22 par : MAILER_DSN=smtp://localhost:1025
          Remplacez la ligne 30 par : DATABASE_URL="mysql://root@127.0.0.1:3306/snowtricks?serverVersion=5.7"
@@ -44,7 +54,7 @@ Pour utiliser ce Site, il faut suivre les étapes suivantes :
 
     Amusez-vous avec ce Site !
 
-To use this blog, you must follow this steps :
+To use this Site, you must follow this steps :
 
     Installation
 
@@ -77,14 +87,8 @@ To use this blog, you must follow this steps :
     
     Don't forget to use download Mail Hog and to use it
 
+        The email address to intercept emails: http://127.0.0.1:8025
+
 
     Have fun using this Site !
 
-Environnement
-
-    PHP 7.3
-    Architecture MVC
-    Programmation Orientée Objet
-    Bootstrap 5
-    MySQL
-    jQuery

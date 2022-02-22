@@ -95,8 +95,6 @@ class TricksController extends AbstractController
 
         $formpictures = $this->createForm(PicturesType::class, $pictures);
         $formpictures->handleRequest($request);
-        // $image = $formpictures->get('link');
-        // dump($image);
 
         if($formpictures->isSubmitted() && $formpictures->isValid() ) {
 

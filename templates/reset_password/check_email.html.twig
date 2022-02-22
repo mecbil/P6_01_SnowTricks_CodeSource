@@ -3,8 +3,8 @@
 {% block title %}E-mail de réinitialisation du mot de passe envoyé {% endblock %}
 
 {% block body %}
-    <p>
+    <p class="col-6 mx-auto">
 Si un compte correspondant à votre e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
-    <p>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
+    <p class="col-6 mx-auto">Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou <a href="{{ path('app_forgot_password_request') }}">essayer à nouveau</a>.</p>
 {% endblock %}

@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ChangePasswordFormType extends AbstractType
@@ -23,11 +23,9 @@ class ChangePasswordFormType extends AbstractType
                         new NotBlank([
                             'message' => 'Please enter a password',
                         ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
+                        new Assert\Regex ([
+                            'pattern' => '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,})$/',
+                            'message' => 'Votre mot de passe doit comporter au moins 8 caractères, lettre Majuscule, lettre minuscule, un chiffre et un caractère special.',
                         ]),
                     ],
                     'label' => 'New password',
@@ -36,7 +34,7 @@ class ChangePasswordFormType extends AbstractType
                     'attr' => ['autocomplete' => 'new-password'],
                     'label' => 'Repeat Password',
                 ],
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Les champs de mot de passe doivent correspondre. ',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

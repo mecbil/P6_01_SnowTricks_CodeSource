@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/admin", name="users")
+     * @Route("/Admin", name="users")
      */
     public function index(): Response
     {
