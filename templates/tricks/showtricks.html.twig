@@ -6,10 +6,6 @@
 
     <div class="Container">
 
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endfor %}
-
         <section class="tricks">
 
             {% for Trick in Tricks %}

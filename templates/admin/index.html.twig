@@ -26,6 +26,9 @@
         {# Profile Collapse #}
         <div class="collapse {{ (onglet)=='profil' ? 'show' : '' }} col-6 mx-auto" id="profil">
             <div class="card card-body">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endfor %}
                 <section >
                     <article>
                                 <h4><span><small>Nom : </small>{{ app.user.lastname }}</h4>
