@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS categories;
-CREATE TABLE IF NOT EXISTS categories (
+CREATE TABLE IF NOT EXISTS categories
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   label varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (id)
@@ -54,7 +55,8 @@ INSERT INTO categories (id, label) VALUES
 --
 
 DROP TABLE IF EXISTS comments;
-CREATE TABLE IF NOT EXISTS comments (
+CREATE TABLE IF NOT EXISTS comments
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   users_id int(11) NOT NULL,
   tricks_id int(11) NOT NULL,
@@ -98,7 +100,8 @@ INSERT INTO comments (id, users_id, tricks_id, content, author, created_at, modi
 --
 
 DROP TABLE IF EXISTS doctrine_migration_versions;
-CREATE TABLE IF NOT EXISTS doctrine_migration_versions (
+CREATE TABLE IF NOT EXISTS doctrine_migration_versions
+(
   version varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   executed_at datetime DEFAULT NULL,
   execution_time int(11) DEFAULT NULL,
@@ -124,7 +127,8 @@ INSERT INTO doctrine_migration_versions (version, executed_at, execution_time) V
 --
 
 DROP TABLE IF EXISTS pictures;
-CREATE TABLE IF NOT EXISTS pictures (
+CREATE TABLE IF NOT EXISTS pictures
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   tricks_id int(11) NOT NULL,
   label varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -157,7 +161,8 @@ INSERT INTO pictures (id, tricks_id, label, link) VALUES
 --
 
 DROP TABLE IF EXISTS reset_password_request;
-CREATE TABLE IF NOT EXISTS reset_password_request (
+CREATE TABLE IF NOT EXISTS reset_password_request
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   user_id int(11) NOT NULL,
   selector varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -182,7 +187,8 @@ INSERT INTO reset_password_request (id, user_id, selector, hashed_token, request
 --
 
 DROP TABLE IF EXISTS tricks;
-CREATE TABLE IF NOT EXISTS tricks (
+CREATE TABLE IF NOT EXISTS tricks
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   users_id int(11) NOT NULL,
   categories_id int(11) NOT NULL,
@@ -227,7 +233,8 @@ INSERT INTO tricks (id, users_id, categories_id, title, author, content, created
 --
 
 DROP TABLE IF EXISTS users;
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS users
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   lastname varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   nickname varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -254,7 +261,8 @@ INSERT INTO users (id, lastname, nickname, email, roles, password, is_verified) 
 --
 
 DROP TABLE IF EXISTS vids;
-CREATE TABLE IF NOT EXISTS vids (
+CREATE TABLE IF NOT EXISTS vids
+(
   id int(11) NOT NULL AUTO_INCREMENT,
   tricks_id int(11) NOT NULL,
   label varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
