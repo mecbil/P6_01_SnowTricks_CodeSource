@@ -157,8 +157,9 @@
 				{% endfor %}
 			</div>
 			<div class="text-center m-2">
-				<button id="loadMoreComments" class="btn btn-success px-4">Load more</button>
+				<button id="loadMoreComments" class="btn btn-success px-4">Load more comments</button>
 			</div>
+			{# {{ path('/tricks/',{'id': Tricks.id }) }} #}
 		</div>
 	</section>
 </div>
@@ -166,28 +167,6 @@
 {% endblock %}
 {% block javascripts %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        click = 0;
-        
-        function loadMoreComments(event) {
-            event.preventDefault();
-            click++;
-            var begin = 4 * click;
-            const url = "{{ path('loadMoreComments', {'id': Tricks.id }) }}" + begin;
-            axios.get(url).then(function(response) {
-                $(".Comments").append(response.data);
-            }).catch(function (error) {
-                if (response.status === 403) {
-                    window.alert("Vous n'êtes pas autorisé à effectuer cette action !");
-                }
-                else if (response.status === 404) {
-                    window.alert("La page appelé n'existe pas");
-                }
-                else {
-                    window.alert("Une erreur est survenue !");
-                }
-            });
-        }
-        document.getElementById("loadMoreComments").addEventListener("click", loadMoreComments);
-    </script>
+	<script type="text/javascript">var id = {{ Tricks.id }}</script>
+    <script src="{{ asset('js/loadcomment.js') }}"></script>
 {% endblock %}
